@@ -7,6 +7,7 @@ import '../features/level/presentation/level_player_screen.dart';
 import '../features/profile/presentation/badges_screen.dart';
 import '../features/profile/presentation/leaderboard_screen.dart';
 import '../features/profile/presentation/profile_screen.dart';
+import '../features/parent/presentation/parent_dashboard_screen.dart';
 import '../features/paywall/presentation/paywall_screen.dart';
 import '../features/realm/presentation/realm_map_screen.dart';
 import '../features/shop/presentation/shop_screen.dart';
@@ -57,6 +58,11 @@ final GoRouter appRouter = GoRouter(
       path: '/paywall',
       name: 'paywall',
       builder: (context, state) => const PaywallScreen(),
+    ),
+    GoRoute(
+      path: '/parent-dashboard',
+      name: 'parentDashboard',
+      builder: (context, state) => const ParentDashboardScreen(),
     ),
     GoRoute(
       path: '/dev/components',

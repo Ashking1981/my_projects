@@ -139,6 +139,12 @@ class PlayerProfileNotifier extends StateNotifier<PlayerProfile> {
     await _persist();
   }
 
+  Future<void> setDyslexiaFont(bool enabled) async {
+    state.dyslexiaFontEnabled = enabled;
+    state = state;
+    await _persist();
+  }
+
   void _equip(ShopItem item) {
     switch (item.category) {
       case ShopItemCategory.avatar:

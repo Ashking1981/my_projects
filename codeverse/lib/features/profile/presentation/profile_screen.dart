@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../data/providers.dart';
 import '../../../domain/rank_calculator.dart';
 import '../../../ui/ui.dart';
+import '../../parent/application/parental_gate.dart';
 
 /// Hub for everything gamification-related that isn't part of the core
 /// learning loop: streak, rank, and links to Badges/Shop.
@@ -60,6 +61,18 @@ class ProfileScreen extends ConsumerWidget {
             subtitle: const Text('Spend coins on cosmetics'),
             trailing: const Icon(Icons.chevron_right_rounded),
             onTap: () => context.push('/shop'),
+          ),
+          ListTile(
+            leading:
+                const Icon(Icons.family_restroom_rounded, color: AppColors.brandSecondary),
+            title: const Text('Parent Dashboard'),
+            subtitle: const Text('Progress, PRO status, accessibility'),
+            trailing: const Icon(Icons.chevron_right_rounded),
+            onTap: () async {
+              if (await requireParentalGate(context)) {
+                if (context.mounted) context.push('/parent-dashboard');
+              }
+            },
           ),
         ],
       ),

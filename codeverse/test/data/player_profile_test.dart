@@ -32,6 +32,7 @@ void main() {
       starsByLevelId: {'py-01': 3, 'py-02': 2},
       ownedItemIds: ['hat_red'],
       badgeIds: ['first_function'],
+      dyslexiaFontEnabled: true,
     );
 
     await box.put('current', profile);
@@ -45,6 +46,7 @@ void main() {
     expect(loaded.starsByLevelId, {'py-01': 3, 'py-02': 2});
     expect(loaded.ownedItemIds, ['hat_red']);
     expect(loaded.badgeIds, ['first_function']);
+    expect(loaded.dyslexiaFontEnabled, isTrue);
     expect(loaded.isLevelCompleted('py-01'), isTrue);
     expect(loaded.isLevelCompleted('py-99'), isFalse);
   });
@@ -54,5 +56,6 @@ void main() {
     expect(profile.xp, 0);
     expect(profile.level, 1);
     expect(profile.starsByLevelId, isEmpty);
+    expect(profile.dyslexiaFontEnabled, isFalse);
   });
 }

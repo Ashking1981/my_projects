@@ -2,6 +2,43 @@
 
 ## Decisions log
 
+- **Phase 7 (compliance pass: Parent Dashboard, privacy policy, dyslexia font)**
+  - `PlayerProfile` gained `dyslexiaFontEnabled` (default `false`), persisted
+    at the next free Hive index (11) per the adapter's append-only
+    convention — `PlayerProfileAdapter`'s field count bumped from 11 to 12.
+    `PlayerProfileNotifier.setDyslexiaFont(bool)` follows the same
+    mutate-in-place + persist pattern as every other profile mutation.
+  - `lib/app/app.dart`'s `CodeVerseApp` is now a `ConsumerWidget`: it watches
+    `playerProfileProvider` and passes `AppFontFamilies.dyslexiaFriendly` as
+    `fontFamilyOverride` into `AppTheme.light/dark` when the toggle is on —
+    wiring that Phase 1's `fontFamilyOverride` param was already built for.
+    Still falls back to the platform font since no `OpenDyslexic` `.ttf` is
+    bundled yet (same caveat as Phase 1's other font tokens).
+  - `assets/legal/privacy_policy.md` is new bundled content (declared under
+    `flutter.assets` in `pubspec.yaml`), loaded at runtime by the new
+    `PrivacyPolicyScreen` (`lib/features/parent/presentation/`) via
+    `rootBundle.loadString` — same "content is data" approach as the realm
+    JSON, so the policy text can be edited without a Dart change.
+  - `ParentDashboardScreen` (`lib/features/parent/presentation/`) is the
+    Phase 7 deliverable the spec's Parent Dashboard requirement asked for:
+    child nickname/level/XP/streak, a per-realm progress list (reusing
+    `ProgressCalculator.realmProgress`), PRO entitlement status with an
+    upgrade shortcut to `/paywall`, the dyslexia-font `SwitchListTile`, and a
+    link to `PrivacyPolicyScreen`. New `/parent-dashboard` route. Entry point
+    is a tile on `ProfileScreen` that calls `requireParentalGate(context)`
+    before pushing the route — the dashboard itself assumes the gate has
+    already been passed and does no gating of its own, keeping the gate
+    check in exactly one place (the call site) rather than duplicated.
+  - Zero-personal-data audit (documented here rather than a separate file):
+    confirmed via the full `pubspec.yaml` dependency list that no ads,
+    analytics, or tracking SDKs exist anywhere in the project; the only
+    free-text field anywhere in the app is the local nickname, stored only
+    in the on-device Hive box; the only network traffic the app can ever
+    generate is Google Play Billing's own purchase/restore calls inside
+    `InAppPurchaseBillingService`. No code changes were needed to satisfy
+    this — it's a statement about what's *absent*, which the privacy policy
+    text now states explicitly for parents/reviewers.
+
 - **Phase 6 (entitlement + paywall + parental gate)**
   - FREE/PRO split (`lib/domain/content_access.dart`, `ContentAccess`): the
     Python Peaks realm is free forever; the other four Realms

@@ -12,6 +12,7 @@ class PlayerProfile {
     this.coins = 0,
     this.streakCount = 0,
     this.lastPlayedAt,
+    this.dyslexiaFontEnabled = false,
     Map<String, int>? starsByLevelId,
     List<String>? ownedItemIds,
     List<String>? badgeIds,
@@ -27,6 +28,7 @@ class PlayerProfile {
   int coins;
   int streakCount;
   DateTime? lastPlayedAt;
+  bool dyslexiaFontEnabled;
 
   /// Best star result (1–3) per completed level id.
   final Map<String, int> starsByLevelId;
@@ -59,13 +61,14 @@ class PlayerProfileAdapter extends TypeAdapter<PlayerProfile> {
           (fields[8] as Map?)?.cast<String, int>() ?? <String, int>{},
       ownedItemIds: (fields[9] as List?)?.cast<String>() ?? <String>[],
       badgeIds: (fields[10] as List?)?.cast<String>() ?? <String>[],
+      dyslexiaFontEnabled: fields[11] as bool? ?? false,
     );
   }
 
   @override
   void write(BinaryWriter writer, PlayerProfile obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.nickname)
       ..writeByte(1)
@@ -87,6 +90,8 @@ class PlayerProfileAdapter extends TypeAdapter<PlayerProfile> {
       ..writeByte(9)
       ..write(obj.ownedItemIds)
       ..writeByte(10)
-      ..write(obj.badgeIds);
+      ..write(obj.badgeIds)
+      ..writeByte(11)
+      ..write(obj.dyslexiaFontEnabled);
   }
 }
