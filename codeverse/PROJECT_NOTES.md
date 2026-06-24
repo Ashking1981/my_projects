@@ -2,6 +2,46 @@
 
 ## Decisions log
 
+- **Phase 3 (navigation & core screens)**
+  - go_router routes: `/` (root), `/realm/:realmId`, `/level/:levelId`,
+    `/dev/components`. No router-level redirect logic — `/` always builds
+    `HomeScreen`, which itself watches `playerProfileProvider` and renders
+    `OnboardingScreen` while `nickname` is empty, or `UniverseMapScreen`
+    once it isn't. Keeps the auth-less, login-less onboarding gate simple
+    without GoRouter's `refreshListenable` plumbing.
+  - State management: `lib/data/providers.dart` holds every Riverpod
+    provider for now (content repo, player repo, entitlement repo,
+    `realmsProvider`, `allLevelsProvider`, `levelsForRealmProvider` family,
+    and `playerProfileProvider`/`PlayerProfileNotifier`). Split into
+    per-feature provider files once this gets crowded.
+  - `PlayerProfileNotifier` mutates the existing `PlayerProfile` instance in
+    place (it's already mutable for Hive) and reassigns `state = state` to
+    notify listeners, then persists via `PlayerRepository.save`. Avoids
+    introducing a parallel immutable/copyWith model just for Riverpod.
+  - Lock/progress rules live in `lib/domain/progress_calculator.dart`
+    (`ProgressCalculator`), pure functions over `List<Level>` +
+    `PlayerProfile` with no widget or storage dependency: a level unlocks
+    once the previous level in its realm has stars; a realm unlocks once
+    the previous realm's levels are all completed. Same rules drive both
+    `UniverseMapScreen` (Realm-level lock/progress) and `RealmMapScreen`
+    (Level-node lock/star state).
+  - `LevelPlayerScreen` runs the fixed core loop as a local 5-step state
+    machine (`_LevelStep`): Story (paged through `level.story`) → Concept →
+    Playground (read-only instructions placeholder — interactive playground
+    widgets are a later phase) → Challenge → Reward. On a correct Challenge
+    submission it calls `PlayerProfileNotifier.completeLevel` (stars/xp/
+    coins/streak/badge) before showing the Reward step.
+  - `ChallengeAnswerWidget` (`lib/features/level/presentation/`) renders the
+    right input per `Challenge` subtype via a sealed `switch`: radio list
+    for `multiple_choice`, a text field for `fill_blank`, tap-to-build chip
+    lists for `drag_to_order`/`block_code` (shuffled with a fixed seed so
+    layout is deterministic in tests), and per-key dropdowns for
+    `match_pairs`. It reports the in-progress response shape each
+    `Challenge.isCorrect` expects via an `onChanged` callback — grading
+    stays entirely in the data layer.
+  - Star score on submit: 3 stars on a first-try correct answer, 2 if the
+    player got it wrong at least once first. No XP/coin penalty for retries.
+
 - **Phase 2 (data layer)**
   - Content is data, not code: `assets/content/realms.json` (5 realms) plus one
     JSON file per realm (`levels_python_peaks.json` etc). `ContentRepository`
