@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -6,6 +7,7 @@ import '../../../data/models/level.dart';
 import '../../../data/providers.dart';
 import '../../../ui/ui.dart';
 import 'challenge_answer_widget.dart';
+import 'playground_widget.dart';
 
 enum _LevelStep { story, concept, playground, challenge, reward }
 
@@ -49,13 +51,19 @@ class _LevelPlayerScreenState extends ConsumerState<LevelPlayerScreen> {
 
           return Padding(
             padding: const EdgeInsets.all(AppSpacing.lg),
-            child: switch (_step) {
-              _LevelStep.story => _buildStory(level),
-              _LevelStep.concept => _buildConcept(level),
-              _LevelStep.playground => _buildPlayground(level),
-              _LevelStep.challenge => _buildChallenge(level),
-              _LevelStep.reward => _buildReward(level),
-            },
+            child: KeyedSubtree(
+              key: ValueKey(_step),
+              child: switch (_step) {
+                    _LevelStep.story => _buildStory(level),
+                    _LevelStep.concept => _buildConcept(level),
+                    _LevelStep.playground => _buildPlayground(level),
+                    _LevelStep.challenge => _buildChallenge(level),
+                    _LevelStep.reward => _buildReward(level),
+                  }
+                  .animate()
+                  .fadeIn(duration: const Duration(milliseconds: 250))
+                  .slideY(begin: 0.05, end: 0),
+            ),
           );
         },
       ),
@@ -115,21 +123,13 @@ class _LevelPlayerScreenState extends ConsumerState<LevelPlayerScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        Text('Playground', style: Theme.of(context).textTheme.titleMedium),
+        const SizedBox(height: AppSpacing.sm),
         Expanded(
           child: Card(
             child: Padding(
               padding: const EdgeInsets.all(AppSpacing.md),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Playground',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: AppSpacing.sm),
-                  Text(level.playground.instructions),
-                ],
-              ),
+              child: PlaygroundWidget(playground: level.playground),
             ),
           ),
         ),
@@ -178,9 +178,20 @@ class _LevelPlayerScreenState extends ConsumerState<LevelPlayerScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(Icons.emoji_events_rounded, color: Colors.amber, size: 72),
+        const Icon(Icons.emoji_events_rounded, color: Colors.amber, size: 72)
+            .animate()
+            .scale(
+              begin: const Offset(0.4, 0.4),
+              end: const Offset(1, 1),
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.elasticOut,
+            )
+            .then()
+            .shake(hz: 2, duration: const Duration(milliseconds: 400)),
         const SizedBox(height: AppSpacing.md),
-        Text('Level complete!', style: Theme.of(context).textTheme.titleLarge),
+        Text('Level complete!', style: Theme.of(context).textTheme.titleLarge)
+            .animate()
+            .fadeIn(delay: const Duration(milliseconds: 200)),
         const SizedBox(height: AppSpacing.sm),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -189,12 +200,15 @@ class _LevelPlayerScreenState extends ConsumerState<LevelPlayerScreen> {
             const SizedBox(width: AppSpacing.sm),
             Text('+${level.reward.xp} XP'),
           ],
-        ),
+        ).animate().fadeIn(delay: const Duration(milliseconds: 350)).slideY(
+              begin: 0.2,
+              end: 0,
+            ),
         const SizedBox(height: AppSpacing.lg),
         PrimaryButton(
           label: 'Back to Realm',
           onPressed: () => context.go('/realm/${level.realmId.name}'),
-        ),
+        ).animate().fadeIn(delay: const Duration(milliseconds: 500)),
       ],
     );
   }

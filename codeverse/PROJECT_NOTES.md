@@ -2,6 +2,31 @@
 
 ## Decisions log
 
+- **Phase 4 (interactive Playgrounds + animation polish)**
+  - `lib/features/level/presentation/playground_widget.dart` replaces the
+    Phase 3 read-only Playground placeholder with a real, hands-on widget
+    per `PlaygroundData.type`. All 13 types used across the 17 authored
+    levels have a genuine interaction (tap/drag/slider/text input), driven
+    entirely by the JSON `config` map — no changes to the `Level`/
+    `PlaygroundData` models were needed, consistent with "content is data."
+    Playgrounds are exploratory only; nothing here is graded (the Challenge
+    step still owns correctness).
+  - Each playground variant is a small private `StatefulWidget` inside that
+    one file rather than its own file per type — 13 tiny widgets sharing a
+    `_PlaygroundScaffold` helper for the instructions-then-content layout.
+    Revisit if any one variant grows complex enough to need its own
+    Riverpod state or asset loading.
+  - Animation polish uses `flutter_animate` only (fade/slide on every
+    Level-Player step transition, an elastic scale + shake + staggered
+    fade-in on the Reward step's trophy/XP/coin row). No Lottie files are
+    bundled yet — `lottie` stays a pinned dependency for Phase 7-era
+    mascot/celebration assets once real `.json` animations are sourced;
+    until then `flutter_animate`'s procedural animations cover the "feel
+    alive" requirement without needing new binary assets.
+  - `LevelPlayerScreen` wraps each step's content in `KeyedSubtree(key:
+    ValueKey(_step))` so `flutter_animate`'s `.animate()` re-triggers on
+    every step change instead of only once.
+
 - **Phase 3 (navigation & core screens)**
   - go_router routes: `/` (root), `/realm/:realmId`, `/level/:levelId`,
     `/dev/components`. No router-level redirect logic — `/` always builds
