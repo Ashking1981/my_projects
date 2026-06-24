@@ -2,6 +2,27 @@
 
 ## Decisions log
 
+- **Phase 1 (design system)**
+  - Tokens in `lib/ui/tokens/`: `AppColors` (+ `RealmPalette`/`RealmId` enum for
+    per-Realm gradients, shared by data models from Phase 2 on), `AppSpacing`/
+    `AppRadii`/`AppElevation`, `AppTextStyles`/`AppFontFamilies`.
+  - `AppFontFamilies.display`/`body`/`dyslexiaFriendly` declare font family
+    names (Baloo2/Inter/OpenDyslexic) but no `.ttf` files are bundled yet —
+    Flutter silently falls back to the platform font until real font assets
+    are added under `assets/fonts/` and registered in `pubspec.yaml`. The
+    dyslexia-friendly toggle (Phase 7) will pass `fontFamilyOverride` into
+    `AppTheme.light/dark`.
+  - `lib/ui/theme/app_theme.dart` builds light/dark `ThemeData` from tokens
+    only — no inline colors/sizes.
+  - Widget library in `lib/ui/widgets/`: PrimaryButton, RealmCard, LevelNode,
+    XPBar (as `XpBar`), CoinBadge, StarRating, StoryPanel, ConceptCard,
+    ChallengeShell, LockOverlay, MascotBubble. Exported via `lib/ui/ui.dart`.
+  - `withValues(alpha:)` (Flutter 3.27+) isn't available on the installed
+    3.24.5 SDK — used `withOpacity` instead. Revisit if the SDK is upgraded.
+  - Visual QA gallery at `/dev/components`
+    (`lib/features/dev/components_gallery_screen.dart`), with a smoke test
+    that scrolls through and asserts every section renders.
+
 - **Phase 0 (scaffold)**
   - App lives at `/codeverse` in this repo, alongside unrelated notebooks at the repo root.
   - Package id: `com.codeverse.app`. Display name and tagline are centralized in
