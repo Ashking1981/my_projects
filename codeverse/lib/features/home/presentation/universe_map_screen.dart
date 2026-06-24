@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../app/app_constants.dart';
 import '../../../data/providers.dart';
+import '../../../domain/content_access.dart';
 import '../../../domain/progress_calculator.dart';
 import '../../../ui/ui.dart';
 
@@ -15,6 +16,7 @@ class UniverseMapScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final profile = ref.watch(playerProfileProvider);
+    final entitlement = ref.watch(entitlementProvider);
     final realmsAsync = ref.watch(realmsProvider);
     final levelsAsync = ref.watch(allLevelsProvider);
 
@@ -62,24 +64,58 @@ class UniverseMapScreen extends ConsumerWidget {
                   ),
                 ),
                 for (var i = 0; i < realms.length; i++) ...[
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: AppSpacing.md),
-                    child: RealmCard(
-                      realmId: realms[i].id,
-                      title: realms[i].name,
-                      subtitle: realms[i].description,
-                      progress: ProgressCalculator.realmProgress(
-                        levelsByRealm[realms[i].id] ?? const [],
-                        profile,
-                      ),
-                      locked: i > 0 &&
-                          !ProgressCalculator.isRealmCompleted(
-                            levelsByRealm[realms[i - 1].id] ?? const [],
-                            profile,
+                  Builder(builder: (context) {
+                    final progressionLocked = i > 0 &&
+                        !ProgressCalculator.isRealmCompleted(
+                          levelsByRealm[realms[i - 1].id] ?? const [],
+                          profile,
+                        );
+                    final proLocked = !progressionLocked &&
+                        ContentAccess.isRealmLocked(
+                          realms[i].id,
+                          isPro: entitlement.isPro,
+                        );
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: AppSpacing.md),
+                      child: Stack(
+                        children: [
+                          RealmCard(
+                            realmId: realms[i].id,
+                            title: realms[i].name,
+                            subtitle: realms[i].description,
+                            progress: ProgressCalculator.realmProgress(
+                              levelsByRealm[realms[i].id] ?? const [],
+                              profile,
+                            ),
+                            locked: progressionLocked,
+                            onTap: () => proLocked
+                                ? context.push('/paywall')
+                                : context.push('/realm/${realms[i].id.name}'),
                           ),
-                      onTap: () => context.push('/realm/${realms[i].id.name}'),
-                    ),
-                  ),
+                          if (proLocked)
+                            Positioned(
+                              top: AppSpacing.sm,
+                              right: AppSpacing.sm,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: AppSpacing.sm,
+                                  vertical: AppSpacing.xs,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: AppColors.coin,
+                                  borderRadius:
+                                      BorderRadius.circular(AppRadii.pill),
+                                ),
+                                child: const Text('PRO',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12)),
+                              ),
+                            ),
+                        ],
+                      ),
+                    );
+                  }),
                 ],
               ],
             );

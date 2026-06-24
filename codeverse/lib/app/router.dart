@@ -7,6 +7,7 @@ import '../features/level/presentation/level_player_screen.dart';
 import '../features/profile/presentation/badges_screen.dart';
 import '../features/profile/presentation/leaderboard_screen.dart';
 import '../features/profile/presentation/profile_screen.dart';
+import '../features/paywall/presentation/paywall_screen.dart';
 import '../features/realm/presentation/realm_map_screen.dart';
 import '../features/shop/presentation/shop_screen.dart';
 
@@ -51,6 +52,11 @@ final GoRouter appRouter = GoRouter(
       path: '/leaderboard',
       name: 'leaderboard',
       builder: (context, state) => const LeaderboardScreen(),
+    ),
+    GoRoute(
+      path: '/paywall',
+      name: 'paywall',
+      builder: (context, state) => const PaywallScreen(),
     ),
     GoRoute(
       path: '/dev/components',

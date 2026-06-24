@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'models/badge_definition.dart';
+import 'models/entitlement.dart';
 import 'models/level.dart';
 import 'models/player_profile.dart';
 import 'models/realm.dart';
@@ -10,6 +11,8 @@ import 'repositories/content_repository.dart';
 import 'repositories/entitlement_repository.dart';
 import 'repositories/player_repository.dart';
 import 'repositories/shop_repository.dart';
+import 'services/billing_service.dart';
+import 'services/mock_billing_service.dart';
 import '../ui/tokens/app_colors.dart';
 
 final contentRepositoryProvider = Provider<ContentRepository>(
@@ -22,6 +25,13 @@ final playerRepositoryProvider = Provider<PlayerRepository>(
 
 final entitlementRepositoryProvider = Provider<EntitlementRepository>(
   (ref) => EntitlementRepository(),
+);
+
+/// [MockBillingService] until a real store is wired up for a signed release
+/// build — this sandbox has no Android SDK/Play Services to test
+/// `InAppPurchaseBillingService` against. Swap this one line for release.
+final billingServiceProvider = Provider<BillingService>(
+  (ref) => MockBillingService(),
 );
 
 final shopRepositoryProvider = Provider<ShopRepository>(
@@ -142,4 +152,45 @@ class PlayerProfileNotifier extends StateNotifier<PlayerProfile> {
 final playerProfileProvider =
     StateNotifierProvider<PlayerProfileNotifier, PlayerProfile>((ref) {
   return PlayerProfileNotifier(ref.read(playerRepositoryProvider));
+});
+
+/// Same mutate-in-place + persist pattern as [PlayerProfileNotifier]. The
+/// only source of truth for "is this player PRO" anywhere in the app —
+/// nothing else should read [Entitlement] directly.
+class EntitlementNotifier extends StateNotifier<Entitlement> {
+  EntitlementNotifier(this._repository, this._billing)
+      : super(_repository.load());
+
+  final EntitlementRepository _repository;
+  final BillingService _billing;
+
+  Future<void> _persist() => _repository.save(state);
+
+  Future<bool> purchasePro() async {
+    final success = await _billing.purchasePro();
+    if (success) {
+      state.isPro = true;
+      state = state;
+      await _persist();
+    }
+    return success;
+  }
+
+  Future<bool> restorePurchases() async {
+    final restored = await _billing.restorePurchases();
+    if (restored) {
+      state.isPro = true;
+      state = state;
+      await _persist();
+    }
+    return restored;
+  }
+}
+
+final entitlementProvider =
+    StateNotifierProvider<EntitlementNotifier, Entitlement>((ref) {
+  return EntitlementNotifier(
+    ref.read(entitlementRepositoryProvider),
+    ref.read(billingServiceProvider),
+  );
 });

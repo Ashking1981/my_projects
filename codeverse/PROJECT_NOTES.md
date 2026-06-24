@@ -2,6 +2,45 @@
 
 ## Decisions log
 
+- **Phase 6 (entitlement + paywall + parental gate)**
+  - FREE/PRO split (`lib/domain/content_access.dart`, `ContentAccess`): the
+    Python Peaks realm is free forever; the other four Realms
+    (`requiresPro`) need the PRO unlock. A pure, storage-free rule, same
+    style as `ProgressCalculator`.
+  - `lib/data/services/billing_service.dart` defines the `BillingService`
+    interface (`purchasePro`/`restorePurchases`). `MockBillingService`
+    always succeeds after a short delay and is what `billingServiceProvider`
+    wires up for now — this sandbox has no Android SDK/Play Services, so
+    the real `InAppPurchaseBillingService` (wraps `in_app_purchase`'s
+    `queryProductDetails`/`buyNonConsumable`/`purchaseStream` for
+    `AppConstants.proProductId`) exists but is untested here. Swapping to it
+    for a signed release build is a one-line change in `providers.dart`.
+  - `EntitlementNotifier`/`entitlementProvider` follow the same
+    mutate-in-place + persist pattern as `PlayerProfileNotifier`:
+    `purchasePro()`/`restorePurchases()` call the `BillingService`, then set
+    `Entitlement.isPro` and persist via `EntitlementRepository` on success.
+    This is the only place in the app that should ever read/write PRO
+    status.
+  - `ParentalGateScreen` (`lib/features/parent/presentation/`) is a simple
+    "what's A+B" arithmetic check with 4 shuffled choices (one correct, 3
+    off by a fixed offset) — enough friction for a 10-16-year-old, trivial
+    for an adult. `requireParentalGate(context)` (`lib/features/parent/
+    application/parental_gate.dart`) pushes it and resolves to whether it
+    was passed; `PaywallScreen` calls it before every purchase/restore
+    attempt per the no-online/child-safety requirements. The full Parent
+    Dashboard (also gated by this same check) is still Phase 7 — this phase
+    only needed the gate itself for purchases.
+  - `PaywallScreen` (`lib/features/paywall/presentation/`) is the only
+    place `purchasePro`/`restorePurchases` are called from. New `/paywall`
+    route.
+  - Gating is enforced in two places: `UniverseMapScreen` routes a tap on a
+    PRO-locked-but-progression-unlocked `RealmCard` to `/paywall` instead of
+    the realm (with a small "PRO" badge overlay so it doesn't look broken),
+    and `RealmMapScreen` re-checks the same rule on build and bounces to
+    `/paywall` via `context.go` if reached directly — defense-in-depth for
+    a future deep link, since today the only way in is through the map's
+    tap handler.
+
 - **Phase 5 (gamification: shop, badges, rank ladder, streaks)**
   - `lib/data/models/shop_item.dart` + `lib/data/repositories/shop_repository.dart`
     hold a fixed, hardcoded Dart cosmetics catalog (5 avatars, 4 companion
@@ -198,6 +237,11 @@
 
 ## How to configure billing & signing
 
-(To be filled in during Phase 6/8 — billing via `EntitlementService` +
-`MockBillingService` fallback for debug, real Play Billing via `in_app_purchase`
-for release. Signing via `android/key.properties`, never committed.)
+Billing (done in Phase 6): `lib/data/providers.dart`'s `billingServiceProvider`
+currently returns `MockBillingService()`. Before a real release build, change
+it to `InAppPurchaseBillingService()` and create the one-time, non-consumable
+product `AppConstants.proProductId` (`codeverse_pro_unlock`) in the Google
+Play Console. No other code changes needed — `EntitlementNotifier` only talks
+to the `BillingService` interface.
+
+Signing (Phase 8): via `android/key.properties`, never committed.

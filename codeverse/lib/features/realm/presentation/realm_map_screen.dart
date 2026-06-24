@@ -3,11 +3,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../data/providers.dart';
+import '../../../domain/content_access.dart';
 import '../../../domain/progress_calculator.dart';
 import '../../../ui/ui.dart';
 
 /// A Realm's skill tree: one [LevelNode] per level, in order, each locked
 /// until the previous one is completed.
+///
+/// Also re-checks the PRO gate (in addition to [UniverseMapScreen]'s tap
+/// handling) in case this route is ever reached directly, e.g. a future
+/// deep link — bounces straight to the paywall rather than rendering
+/// content the player hasn't unlocked.
 class RealmMapScreen extends ConsumerWidget {
   const RealmMapScreen({super.key, required this.realmId});
 
@@ -16,8 +22,16 @@ class RealmMapScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final profile = ref.watch(playerProfileProvider);
+    final entitlement = ref.watch(entitlementProvider);
     final levelsAsync = ref.watch(levelsForRealmProvider(realmId));
     final palette = RealmPalette.of(realmId);
+
+    if (ContentAccess.isRealmLocked(realmId, isPro: entitlement.isPro)) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) context.go('/paywall');
+      });
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
 
     return Scaffold(
       appBar: AppBar(backgroundColor: palette.accent),
