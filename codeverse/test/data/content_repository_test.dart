@@ -22,7 +22,7 @@ void main() {
     expect(levels.last.isBoss, isTrue);
   });
 
-  test('loads 3 levels for each non-Python realm', () async {
+  test('loads 5 levels with a boss for each non-Python realm', () async {
     for (final realmId in [
       RealmId.gameForge,
       RealmId.pixelStudio,
@@ -30,7 +30,8 @@ void main() {
       RealmId.mindMachine,
     ]) {
       final levels = await repository.loadLevelsForRealm(realmId);
-      expect(levels.length, 3, reason: '$realmId should have 3 levels');
+      expect(levels.length, 5, reason: '$realmId should have 5 levels');
+      expect(levels.last.isBoss, isTrue, reason: '$realmId should end with a boss level');
     }
   });
 }

@@ -84,5 +84,62 @@
       "answer": "spacing"
     },
     "reward": { "xp": 25, "coins": 15 }
+  },
+  {
+    "id": "ps-04",
+    "realmId": "pixelStudio",
+    "order": 4,
+    "title": "Contrast and Focus",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Hue", "message": "Contrast is the difference between two colors. High contrast grabs attention." },
+      { "speaker": "Hue", "message": "Designers use strong contrast on the one thing they want you to notice first." },
+      { "speaker": "Pixel", "message": "That's why buttons often pop out from the background!" }
+    ],
+    "concept": {
+      "title": "Contrast & focus",
+      "explanation": "High contrast between a foreground element and its background draws the eye to it first. Use it sparingly on the most important element.",
+      "example": "Dark navy background + bright orange button = the button pops."
+    },
+    "playground": {
+      "type": "contrast_tester",
+      "instructions": "Try different button colors on a dark background and see which one pops out most.",
+      "config": { "background": "#1A1A2E", "options": ["#FF8A65", "#3F3F5F", "#2C2C44"] }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "On a dark navy background, which button color would stand out the most?",
+      "options": ["A slightly darker navy", "A bright orange", "A muted gray", "Same navy as background"],
+      "correctIndex": 1
+    },
+    "reward": { "xp": 30, "coins": 15 }
+  },
+  {
+    "id": "ps-05",
+    "realmId": "pixelStudio",
+    "order": 5,
+    "title": "Boss: Design a Badge",
+    "isBoss": true,
+    "story": [
+      { "speaker": "Hue", "message": "You've learned color, shape, alignment, and contrast. Now design something real!" },
+      { "speaker": "Hue", "message": "A great badge combines a friendly shape, a clear color, and good contrast so it reads instantly." },
+      { "speaker": "Pixel", "message": "This is the Boss Challenge — design your own achievement badge!" }
+    ],
+    "concept": {
+      "title": "Combining design principles",
+      "explanation": "Strong designs combine multiple principles at once: a shape that fits the mood, a color that fits the feeling, and contrast so the focal point is clear.",
+      "example": "A friendly badge: circle shape + warm gold color + dark outline for contrast."
+    },
+    "playground": {
+      "type": "badge_designer",
+      "instructions": "Choose a shape, a color, and an outline contrast to build your own badge.",
+      "config": { "shapes": ["circle", "square", "triangle"], "colors": ["#FFC107", "#2196F3", "#4CAF50"] }
+    },
+    "challenge": {
+      "type": "match_pairs",
+      "prompt": "Match each badge goal to the right design choice.",
+      "pairs": { "Feel friendly and welcoming": "Circle shape", "Make it readable from far away": "High contrast outline", "Feel exciting and bold": "Warm color" }
+    },
+    "reward": { "xp": 60, "coins": 40, "badgeId": "badge_designer" }
   }
 ]

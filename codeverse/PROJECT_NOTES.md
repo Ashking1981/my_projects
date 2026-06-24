@@ -2,6 +2,26 @@
 
 ## Decisions log
 
+- **Content expansion: 5 levels per non-Python realm**
+  - Game Forge, Pixel Studio, Data Delta, and Mind Machine each had only 3
+    levels (vs. Python Peaks' 5, ending in a boss). Added a 4th regular level
+    and a 5th boss level to each, mirroring Python Peaks' structure exactly:
+    `gf-04`/`gf-05` (score & state, then a mini-game boss combining the loop,
+    sprites, collisions, and state — badge `mini_game_builder`), `ps-04`/
+    `ps-05` (contrast & focus, then a badge-design boss combining color,
+    shape, alignment, contrast — badge `badge_designer`), `dd-04`/`dd-05`
+    (reading bar charts, then a full survey-analysis boss — badge
+    `data_analyst`), `mm-04`/`mm-05` (train/test split, then training a tiny
+    classifier — badge `classifier_builder`).
+  - All 5 realms now have 25 levels total; `tool/validate_content.dart`
+    confirms this. Updated
+    `test/data/content_repository_test.dart`'s "loads 3 levels for each
+    non-Python realm" test to "loads 5 levels with a boss for each
+    non-Python realm" to match.
+  - No new challenge types or playground types were needed — every new
+    level reuses an existing `Challenge`/playground type already supported
+    by the engine.
+
 - **Phase 8 (release polish: icon, splash, signing, store listing)**
   - No designer art exists for this app (Phase 1 explicitly punted on real
     icons/fonts), so the launcher icon/splash logo are generated

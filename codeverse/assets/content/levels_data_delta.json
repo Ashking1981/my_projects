@@ -89,5 +89,62 @@
       "answer": "8"
     },
     "reward": { "xp": 25, "coins": 15 }
+  },
+  {
+    "id": "dd-04",
+    "realmId": "dataDelta",
+    "order": 4,
+    "title": "Charts Tell Stories",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Nova", "message": "Numbers in a list are hard to compare. Charts make patterns jump out instantly." },
+      { "speaker": "Nova", "message": "A bar chart uses taller bars for bigger values — easy to compare at a glance." },
+      { "speaker": "Pixel", "message": "One good chart is worth a hundred rows of numbers!" }
+    ],
+    "concept": {
+      "title": "Reading bar charts",
+      "explanation": "A bar chart represents each value as a bar — the taller the bar, the bigger the value. This makes comparing values fast and visual.",
+      "example": "Apples: 5 -> short bar.  Bananas: 9 -> tall bar."
+    },
+    "playground": {
+      "type": "chart_builder",
+      "instructions": "Drag the values to build bars and see which category has the most.",
+      "config": { "data": { "Apples": 5, "Bananas": 9, "Cherries": 3 } }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "In a bar chart, what does a taller bar mean?",
+      "options": ["A smaller value", "A bigger value", "An error in the data", "Nothing, bar height is random"],
+      "correctIndex": 1
+    },
+    "reward": { "xp": 30, "coins": 15 }
+  },
+  {
+    "id": "dd-05",
+    "realmId": "dataDelta",
+    "order": 5,
+    "title": "Boss: The Class Survey",
+    "isBoss": true,
+    "story": [
+      { "speaker": "Nova", "message": "You've learned data, sorting, averages, and charts. Time for a full analysis!" },
+      { "speaker": "Nova", "message": "A good analyst collects data, sorts it, finds the average, then charts the result to tell the story." },
+      { "speaker": "Pixel", "message": "This is the Boss Challenge — analyze a real survey from start to finish!" }
+    ],
+    "concept": {
+      "title": "The analysis pipeline",
+      "explanation": "A full data analysis follows steps in order: collect the data, sort or clean it, calculate summary stats like the average, then visualize it with a chart.",
+      "example": "Collect scores -> sort them -> average = sum / count -> draw a bar chart."
+    },
+    "playground": {
+      "type": "survey_analyzer",
+      "instructions": "Walk through analyzing a class survey: collect, sort, average, then chart the results.",
+      "config": { "survey": [7, 9, 6, 10, 8] }
+    },
+    "challenge": {
+      "type": "drag_to_order",
+      "prompt": "Put the steps of a data analysis in the correct order.",
+      "correctOrder": ["Collect the data", "Sort the data", "Calculate the average", "Draw a chart"]
+    },
+    "reward": { "xp": 60, "coins": 40, "badgeId": "data_analyst" }
   }
 ]

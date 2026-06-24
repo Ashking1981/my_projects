@@ -89,5 +89,67 @@
       "pairs": { "Barks and wags tail": "Dog", "Meows and purrs": "Cat" }
     },
     "reward": { "xp": 25, "coins": 15 }
+  },
+  {
+    "id": "mm-04",
+    "realmId": "mindMachine",
+    "order": 4,
+    "title": "Training and Testing",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Axiom", "message": "Models learn from training data, but we must test them on examples they've never seen." },
+      { "speaker": "Axiom", "message": "If a model only memorizes the training set, it won't work well on new data." },
+      { "speaker": "Pixel", "message": "It's like studying with practice questions, then taking a different real test!" }
+    ],
+    "concept": {
+      "title": "Training vs. testing",
+      "explanation": "We split examples into a training set (to learn from) and a test set (to check if the model really learned the pattern, not just memorized it).",
+      "example": "80 photos to train the model, 20 new photos to test if it really learned."
+    },
+    "playground": {
+      "type": "train_test_splitter",
+      "instructions": "Drag examples into the training pile or the testing pile and see how the split changes.",
+      "config": { "totalExamples": 10 }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "Why do we test a model on examples it has never seen?",
+      "options": [
+        "To make training faster",
+        "To check if it truly learned the pattern, not just memorized",
+        "Because training data runs out",
+        "It's not actually necessary"
+      ],
+      "correctIndex": 1
+    },
+    "reward": { "xp": 30, "coins": 15 }
+  },
+  {
+    "id": "mm-05",
+    "realmId": "mindMachine",
+    "order": 5,
+    "title": "Boss: Train Your Own Classifier",
+    "isBoss": true,
+    "story": [
+      { "speaker": "Axiom", "message": "You've learned patterns, classification, and training versus testing. Now build your own!" },
+      { "speaker": "Axiom", "message": "A classifier learns from labeled training examples, then predicts the label for new ones." },
+      { "speaker": "Pixel", "message": "This is the Boss Challenge — train and test a tiny classifier!" }
+    ],
+    "concept": {
+      "title": "Building a classifier",
+      "explanation": "To build a classifier: gather labeled examples, split them into training and test sets, train the model on the training set, then check its accuracy on the test set.",
+      "example": "Label 20 fruits as 'apple' or 'banana' -> train on 16 -> test on the other 4."
+    },
+    "playground": {
+      "type": "classifier_trainer",
+      "instructions": "Label the fruit examples, split them into train/test, then see how well your classifier predicts the test set.",
+      "config": { "fruits": ["apple", "banana", "apple", "banana"] }
+    },
+    "challenge": {
+      "type": "drag_to_order",
+      "prompt": "Put the steps of building a classifier in the correct order.",
+      "correctOrder": ["Gather labeled examples", "Split into training and test sets", "Train the model", "Test its accuracy"]
+    },
+    "reward": { "xp": 60, "coins": 40, "badgeId": "classifier_builder" }
   }
 ]

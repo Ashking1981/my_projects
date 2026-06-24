@@ -89,5 +89,67 @@
       "answer": "overlaps"
     },
     "reward": { "xp": 25, "coins": 15 }
+  },
+  {
+    "id": "gf-04",
+    "realmId": "gameForge",
+    "order": 4,
+    "title": "Score and State",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Gigabyte", "message": "Every game needs to remember things — like the score, health, or how many lives are left." },
+      { "speaker": "Gigabyte", "message": "We call this game state. It's just variables that change as you play." },
+      { "speaker": "Pixel", "message": "Collect a coin, score goes up. Simple as that!" }
+    ],
+    "concept": {
+      "title": "Game state",
+      "explanation": "Game state is the set of variables that describe the current situation, like score or lives. Update them when something happens in the game.",
+      "example": "score = 0\nscore = score + 10  # after collecting a coin"
+    },
+    "playground": {
+      "type": "state_tracker",
+      "instructions": "Tap the coin to increase the score variable and watch it update live.",
+      "config": { "startingScore": 0, "coinValue": 10 }
+    },
+    "challenge": {
+      "type": "fill_blank",
+      "prompt": "Fill in the blank to add 10 points after collecting a coin.",
+      "template": "score = score + ___",
+      "answer": "10"
+    },
+    "reward": { "xp": 30, "coins": 15 }
+  },
+  {
+    "id": "gf-05",
+    "realmId": "gameForge",
+    "order": 5,
+    "title": "Boss: Build the Mini Game",
+    "isBoss": true,
+    "story": [
+      { "speaker": "Gigabyte", "message": "You've learned the loop, sprites, collisions, and state. Time to put it all together!" },
+      { "speaker": "Gigabyte", "message": "A real game checks for collisions every frame and updates the score when they happen." },
+      { "speaker": "Pixel", "message": "This is the Boss Challenge — build the core of a real mini game!" }
+    ],
+    "concept": {
+      "title": "Putting it together",
+      "explanation": "A simple game combines a loop, sprite positions, collision checks, and state updates: check for a collision, then update the score if it happened.",
+      "example": "if hero.overlaps(coin):\n    score = score + 10\n    remove(coin)"
+    },
+    "playground": {
+      "type": "code_fill",
+      "instructions": "Complete the mini game: when the hero overlaps the coin, add 10 to the score and remove the coin.",
+      "config": { "starterCode": "if hero.overlaps(coin):\n    score = score + 10\n    remove(coin)" }
+    },
+    "challenge": {
+      "type": "block_code",
+      "prompt": "Snap the blocks together to check for a collision and award points when the hero touches the coin.",
+      "correctBlocks": [
+        "if hero.overlaps(coin):",
+        "    score = score + 10",
+        "    remove(coin)"
+      ],
+      "distractorBlocks": ["if hero.overlaps(coin)", "score = score - 10"]
+    },
+    "reward": { "xp": 60, "coins": 40, "badgeId": "mini_game_builder" }
   }
 ]
