@@ -1,0 +1,93 @@
+[
+  {
+    "id": "mm-01",
+    "realmId": "mindMachine",
+    "order": 1,
+    "title": "What Is Machine Learning?",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Axiom", "message": "Welcome, young thinker. Machine learning is teaching computers to learn from examples." },
+      { "speaker": "Axiom", "message": "Instead of writing exact rules, we show the computer many examples and let it find the pattern." },
+      { "speaker": "Pixel", "message": "It's a bit like how you learned to recognize cats after seeing many pictures of them!" }
+    ],
+    "concept": {
+      "title": "Learning from examples",
+      "explanation": "Machine learning lets a computer find patterns by studying many examples, instead of being told exact rules.",
+      "example": "Show 100 photos labeled 'cat' or 'dog' -> the computer learns to tell them apart."
+    },
+    "playground": {
+      "type": "pattern_spotter",
+      "instructions": "Look at the shape examples and guess the rule the computer might learn.",
+      "config": { "examples": ["small circle = happy", "big circle = calm"] }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "Machine learning mainly works by:",
+      "options": [
+        "Following exact rules a programmer writes for every case",
+        "Finding patterns from many examples",
+        "Guessing randomly with no examples",
+        "Memorizing one single example"
+      ],
+      "correctIndex": 1
+    },
+    "reward": { "xp": 20, "coins": 10 }
+  },
+  {
+    "id": "mm-02",
+    "realmId": "mindMachine",
+    "order": 2,
+    "title": "Spotting Patterns",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Axiom", "message": "Pattern recognition is the heart of machine learning." },
+      { "speaker": "Axiom", "message": "Look at these shapes — can you tell what comes next in the sequence?" },
+      { "speaker": "Pixel", "message": "Your brain just did what an ML model tries to do!" }
+    ],
+    "concept": {
+      "title": "Pattern recognition",
+      "explanation": "Pattern recognition means noticing a repeating rule in data, so you can predict what comes next.",
+      "example": "Circle, Square, Circle, Square, ___ -> Circle"
+    },
+    "playground": {
+      "type": "sequence_predictor",
+      "instructions": "Study the shape sequence and pick what should come next.",
+      "config": { "sequence": ["circle", "square", "circle", "square"] }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "Sequence: Red, Blue, Red, Blue, ___. What comes next?",
+      "options": ["Red", "Blue", "Green", "Yellow"],
+      "correctIndex": 0
+    },
+    "reward": { "xp": 25, "coins": 10 }
+  },
+  {
+    "id": "mm-03",
+    "realmId": "mindMachine",
+    "order": 3,
+    "title": "Sorting Into Groups",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Axiom", "message": "Classification means sorting things into the correct group, like 'cat' or 'dog'." },
+      { "speaker": "Axiom", "message": "A well-trained model looks at features — size, shape, color — to decide the group." },
+      { "speaker": "Pixel", "message": "You classify things every day without even noticing!" }
+    ],
+    "concept": {
+      "title": "Classification",
+      "explanation": "Classification is sorting an example into one of several known groups based on its features.",
+      "example": "Furry + barks -> 'Dog'.  Furry + meows -> 'Cat'."
+    },
+    "playground": {
+      "type": "classifier_sandbox",
+      "instructions": "Drag each animal card into the group it belongs to.",
+      "config": { "groups": ["Cat", "Dog"] }
+    },
+    "challenge": {
+      "type": "match_pairs",
+      "prompt": "Match each feature set to the correct animal group.",
+      "pairs": { "Barks and wags tail": "Dog", "Meows and purrs": "Cat" }
+    },
+    "reward": { "xp": 25, "coins": 15 }
+  }
+]

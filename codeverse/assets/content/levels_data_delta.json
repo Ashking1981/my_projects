@@ -1,0 +1,93 @@
+[
+  {
+    "id": "dd-01",
+    "realmId": "dataDelta",
+    "order": 1,
+    "title": "What Is Data?",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Nova", "message": "Welcome to Data Delta! Data is just information we can collect and study." },
+      { "speaker": "Nova", "message": "Your height, your favorite games, the weather today — all of it is data." },
+      { "speaker": "Pixel", "message": "Once we collect data, we can find patterns in it!" }
+    ],
+    "concept": {
+      "title": "What is data?",
+      "explanation": "Data is information collected for analysis — numbers, words, or categories. Analysts look for patterns inside it.",
+      "example": "Favorite colors of 5 friends: Red, Blue, Blue, Green, Blue"
+    },
+    "playground": {
+      "type": "data_collector",
+      "instructions": "Tap to collect sample data points and watch a simple tally build up.",
+      "config": { "categories": ["Red", "Blue", "Green"] }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "Which of these is an example of data?",
+      "options": [
+        "A blank page",
+        "The number of pets each classmate has",
+        "A closed book",
+        "Silence"
+      ],
+      "correctIndex": 1
+    },
+    "reward": { "xp": 20, "coins": 10 }
+  },
+  {
+    "id": "dd-02",
+    "realmId": "dataDelta",
+    "order": 2,
+    "title": "Sorting It Out",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Nova", "message": "Raw data is messy. Sorting it makes patterns easier to see." },
+      { "speaker": "Nova", "message": "We can sort numbers from smallest to largest, or group words by category." },
+      { "speaker": "Pixel", "message": "Sorted data is so much easier to read!" }
+    ],
+    "concept": {
+      "title": "Sorting data",
+      "explanation": "Sorting arranges data in order — like smallest to largest — so it's easier to spot the highest, lowest, or middle value.",
+      "example": "Unsorted: 7, 2, 9, 4   Sorted: 2, 4, 7, 9"
+    },
+    "playground": {
+      "type": "sorting_sandbox",
+      "instructions": "Drag the number cards into order from smallest to largest.",
+      "config": { "numbers": [7, 2, 9, 4] }
+    },
+    "challenge": {
+      "type": "drag_to_order",
+      "prompt": "Arrange these numbers from smallest to largest: 8, 3, 5, 1",
+      "correctOrder": ["1", "3", "5", "8"]
+    },
+    "reward": { "xp": 25, "coins": 10 }
+  },
+  {
+    "id": "dd-03",
+    "realmId": "dataDelta",
+    "order": 3,
+    "title": "Finding the Average",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Nova", "message": "The average tells us a typical value for a whole group of numbers." },
+      { "speaker": "Nova", "message": "Add all the numbers together, then divide by how many numbers there are." },
+      { "speaker": "Pixel", "message": "Averages help us compare groups fairly!" }
+    ],
+    "concept": {
+      "title": "The average (mean)",
+      "explanation": "To find the average: add up all the values, then divide by the count of values.",
+      "example": "Scores: 10, 20, 30  ->  (10+20+30) / 3 = 20"
+    },
+    "playground": {
+      "type": "average_calculator",
+      "instructions": "Add your own numbers and watch the average update live.",
+      "config": { "startingNumbers": [10, 20, 30] }
+    },
+    "challenge": {
+      "type": "fill_blank",
+      "prompt": "What is the average of 4, 8, and 12?",
+      "template": "Average of 4, 8, 12 = ___",
+      "answer": "8"
+    },
+    "reward": { "xp": 25, "coins": 15 }
+  }
+]

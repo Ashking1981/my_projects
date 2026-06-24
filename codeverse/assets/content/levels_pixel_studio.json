@@ -1,0 +1,88 @@
+[
+  {
+    "id": "ps-01",
+    "realmId": "pixelStudio",
+    "order": 1,
+    "title": "Color Basics",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Hue", "message": "Welcome to my studio! Every great design starts with color." },
+      { "speaker": "Hue", "message": "Warm colors like red and orange feel energetic. Cool colors like blue and green feel calm." },
+      { "speaker": "Pixel", "message": "Which colors make YOU feel excited?" }
+    ],
+    "concept": {
+      "title": "Warm vs. cool colors",
+      "explanation": "Warm colors (red, orange, yellow) feel energetic and bold. Cool colors (blue, green, purple) feel calm and relaxed.",
+      "example": "Warm: #FF5722   Cool: #2196F3"
+    },
+    "playground": {
+      "type": "color_picker",
+      "instructions": "Pick colors and sort them into warm or cool groups.",
+      "config": { "palette": ["#FF5722", "#2196F3", "#FFC107", "#4CAF50"] }
+    },
+    "challenge": {
+      "type": "match_pairs",
+      "prompt": "Match each color to warm or cool.",
+      "pairs": { "Red": "Warm", "Blue": "Cool", "Orange": "Warm", "Green": "Cool" }
+    },
+    "reward": { "xp": 20, "coins": 10 }
+  },
+  {
+    "id": "ps-02",
+    "realmId": "pixelStudio",
+    "order": 2,
+    "title": "Shapes That Talk",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Hue", "message": "Shapes carry feeling too. Circles feel friendly, squares feel solid, triangles feel sharp." },
+      { "speaker": "Hue", "message": "Designers pick shapes on purpose, not by accident." },
+      { "speaker": "Pixel", "message": "Look around — what shapes do you see in app icons?" }
+    ],
+    "concept": {
+      "title": "Shape meaning",
+      "explanation": "Circles feel soft and friendly, squares feel stable and trustworthy, triangles feel dynamic and energetic.",
+      "example": "Friendly logo -> circles. Bank logo -> squares."
+    },
+    "playground": {
+      "type": "shape_sorter",
+      "instructions": "Drag shapes onto the mood that fits them best.",
+      "config": { "shapes": ["circle", "square", "triangle"] }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "Which shape usually feels the most friendly and approachable?",
+      "options": ["Square", "Triangle", "Circle", "Star"],
+      "correctIndex": 2
+    },
+    "reward": { "xp": 25, "coins": 10 }
+  },
+  {
+    "id": "ps-03",
+    "realmId": "pixelStudio",
+    "order": 3,
+    "title": "Lining Things Up",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Hue", "message": "Great layouts guide the eye. We use spacing and alignment so things don't feel messy." },
+      { "speaker": "Hue", "message": "Lining up edges and keeping consistent gaps makes a design feel calm and clear." },
+      { "speaker": "Pixel", "message": "A tidy layout is like a tidy room — easier to find what you need!" }
+    ],
+    "concept": {
+      "title": "Alignment & spacing",
+      "explanation": "Aligning elements to a shared edge and keeping consistent spacing between them makes a layout feel organized and easy to scan.",
+      "example": "Align all card titles to the left edge with the same gap above each one."
+    },
+    "playground": {
+      "type": "layout_grid",
+      "instructions": "Drag the cards so their edges line up neatly in a grid.",
+      "config": { "cardCount": 4 }
+    },
+    "challenge": {
+      "type": "fill_blank",
+      "prompt": "Fill in the blank: keeping equal gaps between elements is called ___.",
+      "template": "Equal gaps between elements = consistent ___.",
+      "answer": "spacing"
+    },
+    "reward": { "xp": 25, "coins": 15 }
+  }
+]

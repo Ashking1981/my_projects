@@ -1,0 +1,37 @@
+[
+  {
+    "id": "pythonPeaks",
+    "name": "Python Peaks",
+    "mentorName": "Pyra",
+    "description": "Climb the snowy peaks with Pyra the owl-wizard and learn to speak Python — the language that powers apps, games, and robots.",
+    "order": 1
+  },
+  {
+    "id": "gameForge",
+    "name": "Game Forge",
+    "mentorName": "Gigabyte",
+    "description": "Step into Gigabyte the inventor's workshop and discover how games are built, frame by frame.",
+    "order": 2
+  },
+  {
+    "id": "pixelStudio",
+    "name": "Pixel Studio",
+    "mentorName": "Hue",
+    "description": "Hue the artist will teach you color, shape, and layout — the building blocks of great design.",
+    "order": 3
+  },
+  {
+    "id": "dataDelta",
+    "name": "Data Delta",
+    "mentorName": "Nova",
+    "description": "Explore the river of numbers with Nova the explorer-analyst and learn to find the stories hidden in data.",
+    "order": 4
+  },
+  {
+    "id": "mindMachine",
+    "name": "Mind Machine",
+    "mentorName": "Axiom",
+    "description": "Axiom the calm AI sage will show you how machines learn to recognize patterns, just like you do.",
+    "order": 5
+  }
+]
