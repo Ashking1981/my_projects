@@ -1,11 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'models/badge_definition.dart';
 import 'models/level.dart';
 import 'models/player_profile.dart';
 import 'models/realm.dart';
+import 'models/shop_item.dart';
+import 'repositories/badge_repository.dart';
 import 'repositories/content_repository.dart';
 import 'repositories/entitlement_repository.dart';
 import 'repositories/player_repository.dart';
+import 'repositories/shop_repository.dart';
 import '../ui/tokens/app_colors.dart';
 
 final contentRepositoryProvider = Provider<ContentRepository>(
@@ -18,6 +22,22 @@ final playerRepositoryProvider = Provider<PlayerRepository>(
 
 final entitlementRepositoryProvider = Provider<EntitlementRepository>(
   (ref) => EntitlementRepository(),
+);
+
+final shopRepositoryProvider = Provider<ShopRepository>(
+  (ref) => ShopRepository(),
+);
+
+final badgeRepositoryProvider = Provider<BadgeRepository>(
+  (ref) => BadgeRepository(),
+);
+
+final shopItemsProvider = Provider<List<ShopItem>>(
+  (ref) => ref.read(shopRepositoryProvider).loadItems(),
+);
+
+final badgeCatalogProvider = Provider<List<BadgeDefinition>>(
+  (ref) => ref.read(badgeRepositoryProvider).loadCatalog(),
 );
 
 final realmsProvider = FutureProvider<List<Realm>>((ref) {
@@ -73,6 +93,49 @@ class PlayerProfileNotifier extends StateNotifier<PlayerProfile> {
     state.level = 1 + state.xp ~/ 100;
     state = state;
     await _persist();
+  }
+
+  /// Buys a cosmetic if not already owned and affordable, then equips it.
+  /// Returns false (no-op) if the player can't afford it or already owns it.
+  Future<bool> purchaseItem(ShopItem item) async {
+    if (state.ownedItemIds.contains(item.id) || state.coins < item.cost) {
+      return false;
+    }
+    state.coins -= item.cost;
+    state.ownedItemIds.add(item.id);
+    _equip(item);
+    state = state;
+    await _persist();
+    return true;
+  }
+
+  /// Equips an already-owned cosmetic, or the always-owned `default` look.
+  Future<void> equipItem(ShopItem item) async {
+    if (!state.ownedItemIds.contains(item.id)) return;
+    _equip(item);
+    state = state;
+    await _persist();
+  }
+
+  /// Resets a slot back to the free `default` look.
+  Future<void> equipDefault(ShopItemCategory category) async {
+    switch (category) {
+      case ShopItemCategory.avatar:
+        state.avatarId = 'default';
+      case ShopItemCategory.companion:
+        state.companionSkinId = 'default';
+    }
+    state = state;
+    await _persist();
+  }
+
+  void _equip(ShopItem item) {
+    switch (item.category) {
+      case ShopItemCategory.avatar:
+        state.avatarId = item.id;
+      case ShopItemCategory.companion:
+        state.companionSkinId = item.id;
+    }
   }
 }
 

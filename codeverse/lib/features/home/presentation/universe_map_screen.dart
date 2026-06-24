@@ -23,8 +23,17 @@ class UniverseMapScreen extends ConsumerWidget {
         title: const Text(AppConstants.appName),
         actions: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
+            child: Center(child: StreakBadge(streakCount: profile.streakCount)),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
             child: Center(child: CoinBadge(amount: profile.coins)),
+          ),
+          IconButton(
+            icon: const Icon(Icons.person_rounded),
+            tooltip: 'Profile',
+            onPressed: () => context.push('/profile'),
           ),
         ],
       ),

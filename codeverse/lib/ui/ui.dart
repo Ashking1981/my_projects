@@ -12,4 +12,5 @@ export 'widgets/primary_button.dart';
 export 'widgets/realm_card.dart';
 export 'widgets/star_rating.dart';
 export 'widgets/story_panel.dart';
+export 'widgets/streak_badge.dart';
 export 'widgets/xp_bar.dart';

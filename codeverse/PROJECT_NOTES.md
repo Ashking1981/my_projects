@@ -2,6 +2,39 @@
 
 ## Decisions log
 
+- **Phase 5 (gamification: shop, badges, rank ladder, streaks)**
+  - `lib/data/models/shop_item.dart` + `lib/data/repositories/shop_repository.dart`
+    hold a fixed, hardcoded Dart cosmetics catalog (5 avatars, 4 companion
+    skins) — unlike Level content this is product catalog, not educational
+    content, so it doesn't need to live in JSON. No art assets exist yet, so
+    each item renders as a colored circle + Material icon instead of an
+    image.
+  - `PlayerProfileNotifier` gained `purchaseItem` (deduct coins, add to
+    `ownedItemIds`, auto-equip, no-op if unaffordable or already owned),
+    `equipItem` (only if owned), and `equipDefault` (reset a slot to the
+    free `default` look) — same mutate-in-place + persist pattern as
+    `completeLevel`.
+  - `lib/data/models/badge_definition.dart` + `lib/data/repositories/
+    badge_repository.dart`: a small static catalog mapping badge ids (from
+    level `reward.badgeId`, currently only `first_function`) to a
+    name/description/icon. `BadgeRepository.definitionFor` falls back to a
+    generic "Achievement" look for any uncatalogued id so future content
+    can introduce new badge ids without an app update first.
+  - The spec's "local-only leaderboard" has no online accounts to rank
+    against in this app, so `lib/domain/rank_calculator.dart`
+    (`RankCalculator`) reinterprets it as a single-player rank ladder
+    (Newcomer → Apprentice → Coder → Engineer → Architect → Legend) driven
+    purely by the player's own total XP. Pure functions, no storage
+    dependency, same style as `ProgressCalculator`.
+  - New screens: `ShopScreen` (tabbed Avatars/Companions grid),
+    `BadgesScreen`, `LeaderboardScreen` (rank ladder), and a `ProfileScreen`
+    hub linking to all three plus streak/XP display — all under
+    `lib/features/{shop,profile}/presentation/`. Routes added: `/profile`,
+    `/shop`, `/badges`, `/leaderboard`. `UniverseMapScreen`'s app bar gained
+    a `StreakBadge` and a profile icon button.
+  - New design-system widget `StreakBadge` (`lib/ui/widgets/streak_badge.dart`),
+    styled like the existing `CoinBadge`.
+
 - **Phase 4 (interactive Playgrounds + animation polish)**
   - `lib/features/level/presentation/playground_widget.dart` replaces the
     Phase 3 read-only Playground placeholder with a real, hands-on widget

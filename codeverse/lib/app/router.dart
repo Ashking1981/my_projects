@@ -4,7 +4,11 @@ import '../ui/tokens/app_colors.dart';
 import '../features/dev/components_gallery_screen.dart';
 import '../features/home/presentation/home_screen.dart';
 import '../features/level/presentation/level_player_screen.dart';
+import '../features/profile/presentation/badges_screen.dart';
+import '../features/profile/presentation/leaderboard_screen.dart';
+import '../features/profile/presentation/profile_screen.dart';
 import '../features/realm/presentation/realm_map_screen.dart';
+import '../features/shop/presentation/shop_screen.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',
@@ -27,6 +31,26 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => LevelPlayerScreen(
         levelId: state.pathParameters['levelId']!,
       ),
+    ),
+    GoRoute(
+      path: '/profile',
+      name: 'profile',
+      builder: (context, state) => const ProfileScreen(),
+    ),
+    GoRoute(
+      path: '/shop',
+      name: 'shop',
+      builder: (context, state) => const ShopScreen(),
+    ),
+    GoRoute(
+      path: '/badges',
+      name: 'badges',
+      builder: (context, state) => const BadgesScreen(),
+    ),
+    GoRoute(
+      path: '/leaderboard',
+      name: 'leaderboard',
+      builder: (context, state) => const LeaderboardScreen(),
     ),
     GoRoute(
       path: '/dev/components',
