@@ -2,6 +2,50 @@
 
 ## Decisions log
 
+- **Phase 8 (release polish: icon, splash, signing, store listing)**
+  - No designer art exists for this app (Phase 1 explicitly punted on real
+    icons/fonts), so the launcher icon/splash logo are generated
+    programmatically: `assets/icon/app_icon.png` (solid brand-purple square
+    with a white `</>` code-bracket glyph and an accent-orange "spark" dot,
+    drawn with Pillow — see the icon for the exact look) for the launcher
+    icon, and `assets/icon/splash_logo.png` (same glyph, transparent
+    background) for the native splash, so the splash doesn't show a hard
+    square edge over the brand-color backdrop.
+  - Wired via `flutter_launcher_icons` (generates `android/app/src/main/res/
+    mipmap-*/ic_launcher.png`) and `flutter_native_splash` (generates the
+    `drawable*/launch_background.xml` + `values*/styles.xml` splash theme),
+    both configured directly in `pubspec.yaml`. Both are dev-dependencies
+    and only need re-running (`dart run flutter_launcher_icons` / `dart run
+    flutter_native_splash:create`) if the source PNGs change — the
+    generated output is committed since regenerating requires no Android
+    SDK but is still nice to have versioned for review.
+  - Fixed a latent mismatch: `AppConstants.packageId` said `com.codeverse.app`
+    but the actual Android `applicationId`/`namespace` (set by the original
+    `flutter create`) is `com.codeverse.app.codeverse`. Updated the Dart
+    constant to match reality rather than touching Gradle/Kotlin package
+    paths, since renaming those isn't verifiable without the Android SDK in
+    this sandbox. `AndroidManifest.xml`'s `android:label` was also fixed
+    from lowercase `codeverse` to `CodeVerse`.
+  - Release signing: `android/app/build.gradle` now defines a
+    `signingConfigs.release` that reads from `android/key.properties` (a
+    gitignored file — see `android/.gitignore`, already covered before this
+    phase) when present, and falls back to the debug key otherwise so
+    `flutter build apk --release` keeps working in this sandbox (and any
+    other environment without a release keystore). `SIGNING.md` documents
+    the one-time `keytool`/`key.properties` setup, and
+    `android/key.properties.example` shows the expected shape. Both real
+    builds (`flutter build appbundle`/`apk --release`) still require the
+    Android SDK and must run outside this sandbox per the existing Phase 0
+    note.
+  - `STORE_LISTING.md` is new: Play Store title/descriptions/category/content
+    rating notes drafted from what's actually built (free/PRO split, no
+    ads/tracking, Parent Dashboard, local-only storage), plus explicit TODOs
+    for the two things that can't be produced here — real screenshots/
+    feature graphic (no running Android build in this sandbox to capture
+    from) and a publicly-hosted privacy policy URL (Play Console requires a
+    URL, not a bundled asset — `assets/legal/privacy_policy.md`'s content is
+    ready to publish, just not yet hosted anywhere).
+
 - **Phase 7 (compliance pass: Parent Dashboard, privacy policy, dyslexia font)**
   - `PlayerProfile` gained `dyslexiaFontEnabled` (default `false`), persisted
     at the next free Hive index (11) per the adapter's append-only

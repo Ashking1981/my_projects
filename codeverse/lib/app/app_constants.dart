@@ -5,7 +5,7 @@ class AppConstants {
 
   static const String appName = 'CodeVerse';
   static const String appTagline = 'Your journey into tech starts here';
-  static const String packageId = 'com.codeverse.app';
+  static const String packageId = 'com.codeverse.app.codeverse';
 
   /// Google Play in-app purchase product id for the one-time PRO unlock.
   static const String proProductId = 'codeverse_pro_unlock';
