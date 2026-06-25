@@ -48,18 +48,47 @@ kids coding, learn python, programming for kids, STEM, edtech, game design,
 data science basics, machine learning basics
 
 ## Privacy policy URL
-Host the contents of `assets/legal/privacy_policy.md` at a public URL (e.g.
-GitHub Pages) and link it here before submitting — Play Console requires a
-reachable URL, it won't accept a bundled asset path.
+A hosting-ready HTML copy lives at `docs/privacy-policy.html` (same content
+as `assets/legal/privacy_policy.md`, just styled for a browser). To publish
+it for free via GitHub Pages:
+
+1. On GitHub, go to this repo's **Settings → Pages**.
+2. Under "Build and deployment", set **Source** to "Deploy from a branch".
+3. Set **Branch** to `master` (or whichever default branch holds this
+   file) and the folder to `/docs`, then Save.
+4. After a minute or two, the page is live at:
+   `https://ashking1981.github.io/my_projects/privacy-policy.html`
+
+Use that URL in Play Console's "Privacy policy" field before submitting.
 
 ## Screenshots / graphic assets — TODO
-No screenshots, feature graphic, or promo video exist yet. Capture these
-from a running build before submission:
-- Phone screenshots (min 2, recommended 4–8): Universe Map, a Level Player
-  step (e.g. Playground), the Reward screen, Shop/Badges, Parent Dashboard.
-- Feature graphic: 1024×500 PNG/JPG.
+No screenshots, feature graphic, or promo video exist yet — these require a
+running build on a device/emulator with the Android SDK, which isn't
+available in this sandbox. Capture them on your own machine before
+submission:
+
+1. Run the app: `flutter run -d <device>` (a physical phone, or an Android
+   Studio emulator at a Pixel-class resolution).
+2. Take screenshots (`flutter screenshot` from a separate terminal while
+   the app is running, or the device's own screenshot shortcut) of at
+   least these 5 screens — they cover the app's whole loop and double as
+   a sanity check that everything renders correctly end to end:
+   - Universe Map (the 5-Realm overview)
+   - A Level Player step, ideally the Playground (most visually distinct)
+   - The Reward screen after completing a level (XP/coins/stars)
+   - Shop or Badges screen
+   - Parent Dashboard
+3. Play Store needs at least 2 phone screenshots, JPEG/PNG, 16:9 or 9:16,
+   min 320px on the short side — any modern phone/emulator screenshot
+   already satisfies this.
+4. Feature graphic (1024×500 PNG/JPG, required for the store listing
+   page): a simple banner using the app icon's color palette
+   (`#6C4CF1` purple, `#FF8A65` orange accent) and the CodeVerse name —
+   can be made in any image editor or Canva from the existing
+   `assets/icon/app_icon.png` as a starting logo.
 - App icon: already generated at `assets/icon/app_icon.png` and wired into
-  `android/app/src/main/res/mipmap-*` via `flutter_launcher_icons`.
+  `android/app/src/main/res/mipmap-*` via `flutter_launcher_icons`. No
+  further action needed for this one.
 
 ## Support contact
-TODO — add a support email or URL here before submission.
+akumar.here@gmail.com
