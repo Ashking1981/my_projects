@@ -74,7 +74,7 @@ class AppTheme {
           textStyle: AppTextStyles.bodyStrong(fontFamily: fontFamilyOverride),
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: surface,
         elevation: AppElevation.card,
         shape: RoundedRectangleBorder(
