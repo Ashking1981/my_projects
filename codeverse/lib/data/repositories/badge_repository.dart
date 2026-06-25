@@ -28,5 +28,29 @@ class BadgeRepository {
       description: 'Wrote your first Python function.',
       icon: Icons.functions_rounded,
     ),
+    BadgeDefinition(
+      id: 'mini_game_builder',
+      name: 'Mini-Game Builder',
+      description: 'Built the core of a real mini game in Game Forge.',
+      icon: Icons.sports_esports_rounded,
+    ),
+    BadgeDefinition(
+      id: 'badge_designer',
+      name: 'Badge Designer',
+      description: 'Designed an achievement badge in Pixel Studio.',
+      icon: Icons.palette_rounded,
+    ),
+    BadgeDefinition(
+      id: 'data_analyst',
+      name: 'Data Analyst',
+      description: 'Analyzed a class survey from start to finish in Data Delta.',
+      icon: Icons.bar_chart_rounded,
+    ),
+    BadgeDefinition(
+      id: 'classifier_builder',
+      name: 'Classifier Builder',
+      description: 'Trained and tested a classifier in Mind Machine.',
+      icon: Icons.psychology_rounded,
+    ),
   ];
 }

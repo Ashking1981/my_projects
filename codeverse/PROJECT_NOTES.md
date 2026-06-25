@@ -2,6 +2,19 @@
 
 ## Decisions log
 
+- **Badge catalog gap fix for the 4 new boss badges**
+  - The content expansion introduced 4 new `reward.badgeId`s
+    (`mini_game_builder`, `badge_designer`, `data_analyst`,
+    `classifier_builder`) but `BadgeRepository._catalog` only had
+    `first_function` registered — the others would have silently fallen
+    back to the generic "Achievement" icon/copy in the UI. Added proper
+    `BadgeDefinition`s (name, description, icon) for all four.
+  - Added `test/data/badge_repository_test.dart`, which loads every level
+    via `ContentRepository.loadLevels()` and asserts every non-null
+    `reward.badgeId` has a matching catalog entry — this would have caught
+    the gap immediately and prevents the same mistake when new badge ids
+    are introduced in future content.
+
 - **Content expansion: 5 levels per non-Python realm**
   - Game Forge, Pixel Studio, Data Delta, and Mind Machine each had only 3
     levels (vs. Python Peaks' 5, ending in a boss). Added a 4th regular level
