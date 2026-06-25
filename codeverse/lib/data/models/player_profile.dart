@@ -36,6 +36,24 @@ class PlayerProfile {
   final List<String> badgeIds;
 
   bool isLevelCompleted(String levelId) => starsByLevelId.containsKey(levelId);
+
+  /// A distinct instance with the same field values, so Riverpod's default
+  /// `previous != next` check (which uses identity here, since this class
+  /// has no `==` override) actually sees a change and notifies watchers.
+  PlayerProfile clone() => PlayerProfile(
+        nickname: nickname,
+        avatarId: avatarId,
+        companionSkinId: companionSkinId,
+        xp: xp,
+        level: level,
+        coins: coins,
+        streakCount: streakCount,
+        lastPlayedAt: lastPlayedAt,
+        dyslexiaFontEnabled: dyslexiaFontEnabled,
+        starsByLevelId: Map.of(starsByLevelId),
+        ownedItemIds: List.of(ownedItemIds),
+        badgeIds: List.of(badgeIds),
+      );
 }
 
 class PlayerProfileAdapter extends TypeAdapter<PlayerProfile> {

@@ -8,6 +8,11 @@ class Entitlement {
 
   bool isPro;
   String? purchaseToken;
+
+  /// A distinct instance with the same field values, so Riverpod's default
+  /// `previous != next` check (which uses identity here, since this class
+  /// has no `==` override) actually sees a change and notifies watchers.
+  Entitlement clone() => Entitlement(isPro: isPro, purchaseToken: purchaseToken);
 }
 
 class EntitlementAdapter extends TypeAdapter<Entitlement> {

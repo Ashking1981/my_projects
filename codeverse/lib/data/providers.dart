@@ -76,7 +76,7 @@ class PlayerProfileNotifier extends StateNotifier<PlayerProfile> {
 
   Future<void> setNickname(String nickname) async {
     state.nickname = nickname;
-    state = state;
+    state = state.clone();
     await _persist();
   }
 
@@ -101,7 +101,7 @@ class PlayerProfileNotifier extends StateNotifier<PlayerProfile> {
       state.badgeIds.add(badgeId);
     }
     state.level = 1 + state.xp ~/ 100;
-    state = state;
+    state = state.clone();
     await _persist();
   }
 
@@ -114,7 +114,7 @@ class PlayerProfileNotifier extends StateNotifier<PlayerProfile> {
     state.coins -= item.cost;
     state.ownedItemIds.add(item.id);
     _equip(item);
-    state = state;
+    state = state.clone();
     await _persist();
     return true;
   }
@@ -123,7 +123,7 @@ class PlayerProfileNotifier extends StateNotifier<PlayerProfile> {
   Future<void> equipItem(ShopItem item) async {
     if (!state.ownedItemIds.contains(item.id)) return;
     _equip(item);
-    state = state;
+    state = state.clone();
     await _persist();
   }
 
@@ -135,13 +135,13 @@ class PlayerProfileNotifier extends StateNotifier<PlayerProfile> {
       case ShopItemCategory.companion:
         state.companionSkinId = 'default';
     }
-    state = state;
+    state = state.clone();
     await _persist();
   }
 
   Future<void> setDyslexiaFont(bool enabled) async {
     state.dyslexiaFontEnabled = enabled;
-    state = state;
+    state = state.clone();
     await _persist();
   }
 
@@ -176,7 +176,7 @@ class EntitlementNotifier extends StateNotifier<Entitlement> {
     final success = await _billing.purchasePro();
     if (success) {
       state.isPro = true;
-      state = state;
+      state = state.clone();
       await _persist();
     }
     return success;
@@ -186,7 +186,7 @@ class EntitlementNotifier extends StateNotifier<Entitlement> {
     final restored = await _billing.restorePurchases();
     if (restored) {
       state.isPro = true;
-      state = state;
+      state = state.clone();
       await _persist();
     }
     return restored;
