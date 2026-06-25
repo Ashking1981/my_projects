@@ -1,0 +1,145 @@
+[
+  {
+    "id": "ps-01",
+    "realmId": "pixelStudio",
+    "order": 1,
+    "title": "Color Basics",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Hue", "message": "Welcome to my studio! Every great design starts with color." },
+      { "speaker": "Hue", "message": "Warm colors like red and orange feel energetic. Cool colors like blue and green feel calm." },
+      { "speaker": "Pixel", "message": "Which colors make YOU feel excited?" }
+    ],
+    "concept": {
+      "title": "Warm vs. cool colors",
+      "explanation": "Warm colors (red, orange, yellow) feel energetic and bold. Cool colors (blue, green, purple) feel calm and relaxed.",
+      "example": "Warm: #FF5722   Cool: #2196F3"
+    },
+    "playground": {
+      "type": "color_picker",
+      "instructions": "Pick colors and sort them into warm or cool groups.",
+      "config": { "palette": ["#FF5722", "#2196F3", "#FFC107", "#4CAF50"] }
+    },
+    "challenge": {
+      "type": "match_pairs",
+      "prompt": "Match each color to warm or cool.",
+      "pairs": { "Red": "Warm", "Blue": "Cool", "Orange": "Warm", "Green": "Cool" }
+    },
+    "reward": { "xp": 20, "coins": 10 }
+  },
+  {
+    "id": "ps-02",
+    "realmId": "pixelStudio",
+    "order": 2,
+    "title": "Shapes That Talk",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Hue", "message": "Shapes carry feeling too. Circles feel friendly, squares feel solid, triangles feel sharp." },
+      { "speaker": "Hue", "message": "Designers pick shapes on purpose, not by accident." },
+      { "speaker": "Pixel", "message": "Look around — what shapes do you see in app icons?" }
+    ],
+    "concept": {
+      "title": "Shape meaning",
+      "explanation": "Circles feel soft and friendly, squares feel stable and trustworthy, triangles feel dynamic and energetic.",
+      "example": "Friendly logo -> circles. Bank logo -> squares."
+    },
+    "playground": {
+      "type": "shape_sorter",
+      "instructions": "Drag shapes onto the mood that fits them best.",
+      "config": { "shapes": ["circle", "square", "triangle"] }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "Which shape usually feels the most friendly and approachable?",
+      "options": ["Square", "Triangle", "Circle", "Star"],
+      "correctIndex": 2
+    },
+    "reward": { "xp": 25, "coins": 10 }
+  },
+  {
+    "id": "ps-03",
+    "realmId": "pixelStudio",
+    "order": 3,
+    "title": "Lining Things Up",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Hue", "message": "Great layouts guide the eye. We use spacing and alignment so things don't feel messy." },
+      { "speaker": "Hue", "message": "Lining up edges and keeping consistent gaps makes a design feel calm and clear." },
+      { "speaker": "Pixel", "message": "A tidy layout is like a tidy room — easier to find what you need!" }
+    ],
+    "concept": {
+      "title": "Alignment & spacing",
+      "explanation": "Aligning elements to a shared edge and keeping consistent spacing between them makes a layout feel organized and easy to scan.",
+      "example": "Align all card titles to the left edge with the same gap above each one."
+    },
+    "playground": {
+      "type": "layout_grid",
+      "instructions": "Drag the cards so their edges line up neatly in a grid.",
+      "config": { "cardCount": 4 }
+    },
+    "challenge": {
+      "type": "fill_blank",
+      "prompt": "Fill in the blank: keeping equal gaps between elements is called ___.",
+      "template": "Equal gaps between elements = consistent ___.",
+      "answer": "spacing"
+    },
+    "reward": { "xp": 25, "coins": 15 }
+  },
+  {
+    "id": "ps-04",
+    "realmId": "pixelStudio",
+    "order": 4,
+    "title": "Contrast and Focus",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Hue", "message": "Contrast is the difference between two colors. High contrast grabs attention." },
+      { "speaker": "Hue", "message": "Designers use strong contrast on the one thing they want you to notice first." },
+      { "speaker": "Pixel", "message": "That's why buttons often pop out from the background!" }
+    ],
+    "concept": {
+      "title": "Contrast & focus",
+      "explanation": "High contrast between a foreground element and its background draws the eye to it first. Use it sparingly on the most important element.",
+      "example": "Dark navy background + bright orange button = the button pops."
+    },
+    "playground": {
+      "type": "contrast_tester",
+      "instructions": "Try different button colors on a dark background and see which one pops out most.",
+      "config": { "background": "#1A1A2E", "options": ["#FF8A65", "#3F3F5F", "#2C2C44"] }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "On a dark navy background, which button color would stand out the most?",
+      "options": ["A slightly darker navy", "A bright orange", "A muted gray", "Same navy as background"],
+      "correctIndex": 1
+    },
+    "reward": { "xp": 30, "coins": 15 }
+  },
+  {
+    "id": "ps-05",
+    "realmId": "pixelStudio",
+    "order": 5,
+    "title": "Boss: Design a Badge",
+    "isBoss": true,
+    "story": [
+      { "speaker": "Hue", "message": "You've learned color, shape, alignment, and contrast. Now design something real!" },
+      { "speaker": "Hue", "message": "A great badge combines a friendly shape, a clear color, and good contrast so it reads instantly." },
+      { "speaker": "Pixel", "message": "This is the Boss Challenge — design your own achievement badge!" }
+    ],
+    "concept": {
+      "title": "Combining design principles",
+      "explanation": "Strong designs combine multiple principles at once: a shape that fits the mood, a color that fits the feeling, and contrast so the focal point is clear.",
+      "example": "A friendly badge: circle shape + warm gold color + dark outline for contrast."
+    },
+    "playground": {
+      "type": "badge_designer",
+      "instructions": "Choose a shape, a color, and an outline contrast to build your own badge.",
+      "config": { "shapes": ["circle", "square", "triangle"], "colors": ["#FFC107", "#2196F3", "#4CAF50"] }
+    },
+    "challenge": {
+      "type": "match_pairs",
+      "prompt": "Match each badge goal to the right design choice.",
+      "pairs": { "Feel friendly and welcoming": "Circle shape", "Make it readable from far away": "High contrast outline", "Feel exciting and bold": "Warm color" }
+    },
+    "reward": { "xp": 60, "coins": 40, "badgeId": "badge_designer" }
+  }
+]

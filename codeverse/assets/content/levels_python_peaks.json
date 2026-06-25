@@ -1,0 +1,161 @@
+[
+  {
+    "id": "py-01",
+    "realmId": "pythonPeaks",
+    "order": 1,
+    "title": "Hello, Explorer!",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Pixel", "message": "Welcome to Python Peaks! That hooting sound is Pyra." },
+      { "speaker": "Pyra", "message": "Greetings, young coder! Every Python program starts by telling the computer to say something." },
+      { "speaker": "Pyra", "message": "We use the print() command. Type print(\"Hello, CodeVerse!\") and the computer will display it." },
+      { "speaker": "Pixel", "message": "Let's give it a try in the playground!" }
+    ],
+    "concept": {
+      "title": "The print() command",
+      "explanation": "print() displays text on the screen. Whatever you put inside the quotes between the parentheses gets shown exactly as written.",
+      "example": "print(\"Hello, CodeVerse!\")"
+    },
+    "playground": {
+      "type": "code_fill",
+      "instructions": "Change the text inside the quotes, then press Run to see your message appear.",
+      "config": { "starterCode": "print(\"Hello, CodeVerse!\")" }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "Which line correctly prints the word Python?",
+      "options": [
+        "print(Python)",
+        "print(\"Python\")",
+        "say(\"Python\")",
+        "\"Python\".print()"
+      ],
+      "correctIndex": 1
+    },
+    "reward": { "xp": 20, "coins": 10 }
+  },
+  {
+    "id": "py-02",
+    "realmId": "pythonPeaks",
+    "order": 2,
+    "title": "Boxes for Values",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Pyra", "message": "A variable is like a labeled box that stores a value for later." },
+      { "speaker": "Pyra", "message": "We write score = 10 to create a box named score holding the number 10." },
+      { "speaker": "Pixel", "message": "You can change what's in the box any time — just give it a new value!" }
+    ],
+    "concept": {
+      "title": "Variables",
+      "explanation": "A variable stores a value you can reuse and change later. Give it a clear name so your code is easy to read.",
+      "example": "score = 10\nprint(score)"
+    },
+    "playground": {
+      "type": "code_fill",
+      "instructions": "Create a variable called name with your explorer name, then print it.",
+      "config": { "starterCode": "name = \"Explorer\"\nprint(name)" }
+    },
+    "challenge": {
+      "type": "fill_blank",
+      "prompt": "Fill in the blank to store the number 5 in a variable called coins.",
+      "template": "coins ___ 5",
+      "answer": "="
+    },
+    "reward": { "xp": 25, "coins": 10 }
+  },
+  {
+    "id": "py-03",
+    "realmId": "pythonPeaks",
+    "order": 3,
+    "title": "Choices with If",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Pyra", "message": "Sometimes code needs to make a choice. That's what if statements are for." },
+      { "speaker": "Pyra", "message": "if score > 50: means 'only run the next line when score is greater than 50'." },
+      { "speaker": "Pixel", "message": "Try changing the score and see how the message changes!" }
+    ],
+    "concept": {
+      "title": "If statements",
+      "explanation": "An if statement runs a block of code only when its condition is true. Indent the lines that belong to the if.",
+      "example": "score = 80\nif score > 50:\n    print(\"You leveled up!\")"
+    },
+    "playground": {
+      "type": "code_fill",
+      "instructions": "Change the score value and predict whether the message will print.",
+      "config": { "starterCode": "score = 80\nif score > 50:\n    print(\"You leveled up!\")" }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "if age > 12: print(\"Teen\") — when does \"Teen\" print?",
+      "options": [
+        "Only when age is exactly 12",
+        "Only when age is greater than 12",
+        "Every single time",
+        "Only when age is less than 12"
+      ],
+      "correctIndex": 1
+    },
+    "reward": { "xp": 25, "coins": 10 }
+  },
+  {
+    "id": "py-04",
+    "realmId": "pythonPeaks",
+    "order": 4,
+    "title": "Loop the Mountain",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Pyra", "message": "Climbing one step at a time would take forever — loops repeat actions for us!" },
+      { "speaker": "Pyra", "message": "for i in range(5): repeats the next line 5 times." },
+      { "speaker": "Pixel", "message": "Loops save you from writing the same line over and over." }
+    ],
+    "concept": {
+      "title": "For loops",
+      "explanation": "A for loop repeats a block of code a set number of times. range(5) means 'repeat 5 times'.",
+      "example": "for i in range(5):\n    print(\"Climbing!\")"
+    },
+    "playground": {
+      "type": "code_fill",
+      "instructions": "Change the number in range() to make Pyra climb a different number of steps.",
+      "config": { "starterCode": "for i in range(5):\n    print(\"Climbing!\")" }
+    },
+    "challenge": {
+      "type": "drag_to_order",
+      "prompt": "Arrange the blocks to print \"Hi!\" three times.",
+      "correctOrder": ["for i in range(3):", "    print(\"Hi!\")"]
+    },
+    "reward": { "xp": 30, "coins": 15 }
+  },
+  {
+    "id": "py-05",
+    "realmId": "pythonPeaks",
+    "order": 5,
+    "title": "Boss: The Summit Function",
+    "isBoss": true,
+    "story": [
+      { "speaker": "Pyra", "message": "You've learned variables, if, and loops. Now combine them to reach the summit!" },
+      { "speaker": "Pyra", "message": "A function packages code into a reusable command using def." },
+      { "speaker": "Pixel", "message": "This is the Boss Challenge — show everything you've learned!" }
+    ],
+    "concept": {
+      "title": "Functions",
+      "explanation": "A function is a named, reusable block of code defined with def. You can call it any time by name.",
+      "example": "def greet():\n    print(\"Welcome to the summit!\")\n\ngreet()"
+    },
+    "playground": {
+      "type": "code_fill",
+      "instructions": "Write a function called celebrate that prints a victory message, then call it.",
+      "config": { "starterCode": "def celebrate():\n    print(\"We made it!\")\n\ncelebrate()" }
+    },
+    "challenge": {
+      "type": "block_code",
+      "prompt": "Snap the blocks to define a function called climb that prints \"Up we go!\" and then call it.",
+      "correctBlocks": [
+        "def climb():",
+        "    print(\"Up we go!\")",
+        "climb()"
+      ],
+      "distractorBlocks": ["def climb:", "print(\"Up we go!\")()"]
+    },
+    "reward": { "xp": 60, "coins": 40, "badgeId": "first_function" }
+  }
+]

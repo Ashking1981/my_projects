@@ -1,0 +1,150 @@
+[
+  {
+    "id": "dd-01",
+    "realmId": "dataDelta",
+    "order": 1,
+    "title": "What Is Data?",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Nova", "message": "Welcome to Data Delta! Data is just information we can collect and study." },
+      { "speaker": "Nova", "message": "Your height, your favorite games, the weather today — all of it is data." },
+      { "speaker": "Pixel", "message": "Once we collect data, we can find patterns in it!" }
+    ],
+    "concept": {
+      "title": "What is data?",
+      "explanation": "Data is information collected for analysis — numbers, words, or categories. Analysts look for patterns inside it.",
+      "example": "Favorite colors of 5 friends: Red, Blue, Blue, Green, Blue"
+    },
+    "playground": {
+      "type": "data_collector",
+      "instructions": "Tap to collect sample data points and watch a simple tally build up.",
+      "config": { "categories": ["Red", "Blue", "Green"] }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "Which of these is an example of data?",
+      "options": [
+        "A blank page",
+        "The number of pets each classmate has",
+        "A closed book",
+        "Silence"
+      ],
+      "correctIndex": 1
+    },
+    "reward": { "xp": 20, "coins": 10 }
+  },
+  {
+    "id": "dd-02",
+    "realmId": "dataDelta",
+    "order": 2,
+    "title": "Sorting It Out",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Nova", "message": "Raw data is messy. Sorting it makes patterns easier to see." },
+      { "speaker": "Nova", "message": "We can sort numbers from smallest to largest, or group words by category." },
+      { "speaker": "Pixel", "message": "Sorted data is so much easier to read!" }
+    ],
+    "concept": {
+      "title": "Sorting data",
+      "explanation": "Sorting arranges data in order — like smallest to largest — so it's easier to spot the highest, lowest, or middle value.",
+      "example": "Unsorted: 7, 2, 9, 4   Sorted: 2, 4, 7, 9"
+    },
+    "playground": {
+      "type": "sorting_sandbox",
+      "instructions": "Drag the number cards into order from smallest to largest.",
+      "config": { "numbers": [7, 2, 9, 4] }
+    },
+    "challenge": {
+      "type": "drag_to_order",
+      "prompt": "Arrange these numbers from smallest to largest: 8, 3, 5, 1",
+      "correctOrder": ["1", "3", "5", "8"]
+    },
+    "reward": { "xp": 25, "coins": 10 }
+  },
+  {
+    "id": "dd-03",
+    "realmId": "dataDelta",
+    "order": 3,
+    "title": "Finding the Average",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Nova", "message": "The average tells us a typical value for a whole group of numbers." },
+      { "speaker": "Nova", "message": "Add all the numbers together, then divide by how many numbers there are." },
+      { "speaker": "Pixel", "message": "Averages help us compare groups fairly!" }
+    ],
+    "concept": {
+      "title": "The average (mean)",
+      "explanation": "To find the average: add up all the values, then divide by the count of values.",
+      "example": "Scores: 10, 20, 30  ->  (10+20+30) / 3 = 20"
+    },
+    "playground": {
+      "type": "average_calculator",
+      "instructions": "Add your own numbers and watch the average update live.",
+      "config": { "startingNumbers": [10, 20, 30] }
+    },
+    "challenge": {
+      "type": "fill_blank",
+      "prompt": "What is the average of 4, 8, and 12?",
+      "template": "Average of 4, 8, 12 = ___",
+      "answer": "8"
+    },
+    "reward": { "xp": 25, "coins": 15 }
+  },
+  {
+    "id": "dd-04",
+    "realmId": "dataDelta",
+    "order": 4,
+    "title": "Charts Tell Stories",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Nova", "message": "Numbers in a list are hard to compare. Charts make patterns jump out instantly." },
+      { "speaker": "Nova", "message": "A bar chart uses taller bars for bigger values — easy to compare at a glance." },
+      { "speaker": "Pixel", "message": "One good chart is worth a hundred rows of numbers!" }
+    ],
+    "concept": {
+      "title": "Reading bar charts",
+      "explanation": "A bar chart represents each value as a bar — the taller the bar, the bigger the value. This makes comparing values fast and visual.",
+      "example": "Apples: 5 -> short bar.  Bananas: 9 -> tall bar."
+    },
+    "playground": {
+      "type": "chart_builder",
+      "instructions": "Drag the values to build bars and see which category has the most.",
+      "config": { "data": { "Apples": 5, "Bananas": 9, "Cherries": 3 } }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "In a bar chart, what does a taller bar mean?",
+      "options": ["A smaller value", "A bigger value", "An error in the data", "Nothing, bar height is random"],
+      "correctIndex": 1
+    },
+    "reward": { "xp": 30, "coins": 15 }
+  },
+  {
+    "id": "dd-05",
+    "realmId": "dataDelta",
+    "order": 5,
+    "title": "Boss: The Class Survey",
+    "isBoss": true,
+    "story": [
+      { "speaker": "Nova", "message": "You've learned data, sorting, averages, and charts. Time for a full analysis!" },
+      { "speaker": "Nova", "message": "A good analyst collects data, sorts it, finds the average, then charts the result to tell the story." },
+      { "speaker": "Pixel", "message": "This is the Boss Challenge — analyze a real survey from start to finish!" }
+    ],
+    "concept": {
+      "title": "The analysis pipeline",
+      "explanation": "A full data analysis follows steps in order: collect the data, sort or clean it, calculate summary stats like the average, then visualize it with a chart.",
+      "example": "Collect scores -> sort them -> average = sum / count -> draw a bar chart."
+    },
+    "playground": {
+      "type": "survey_analyzer",
+      "instructions": "Walk through analyzing a class survey: collect, sort, average, then chart the results.",
+      "config": { "survey": [7, 9, 6, 10, 8] }
+    },
+    "challenge": {
+      "type": "drag_to_order",
+      "prompt": "Put the steps of a data analysis in the correct order.",
+      "correctOrder": ["Collect the data", "Sort the data", "Calculate the average", "Draw a chart"]
+    },
+    "reward": { "xp": 60, "coins": 40, "badgeId": "data_analyst" }
+  }
+]

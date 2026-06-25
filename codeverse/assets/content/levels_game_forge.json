@@ -1,0 +1,155 @@
+[
+  {
+    "id": "gf-01",
+    "realmId": "gameForge",
+    "order": 1,
+    "title": "The Game Loop",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Gigabyte", "message": "Welcome to my workshop! Every game runs on a game loop — update, draw, repeat." },
+      { "speaker": "Gigabyte", "message": "Update moves things, draw shows them on screen, and it all repeats dozens of times per second." },
+      { "speaker": "Pixel", "message": "That's why characters in games move so smoothly!" }
+    ],
+    "concept": {
+      "title": "The game loop",
+      "explanation": "A game loop repeats three steps very fast: read input, update the game world, then draw it on screen.",
+      "example": "while game_running:\n    handle_input()\n    update()\n    draw()"
+    },
+    "playground": {
+      "type": "sequence_builder",
+      "instructions": "Arrange the three steps of a game loop in the order they should run.",
+      "config": { "steps": ["handle_input()", "update()", "draw()"] }
+    },
+    "challenge": {
+      "type": "drag_to_order",
+      "prompt": "Put the game loop steps in the correct order.",
+      "correctOrder": ["handle_input()", "update()", "draw()"]
+    },
+    "reward": { "xp": 20, "coins": 10 }
+  },
+  {
+    "id": "gf-02",
+    "realmId": "gameForge",
+    "order": 2,
+    "title": "Sprites and Coordinates",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Gigabyte", "message": "A sprite is the picture for a game character or object." },
+      { "speaker": "Gigabyte", "message": "Every sprite has an x and y position — x is left/right, y is up/down." },
+      { "speaker": "Pixel", "message": "Move x up and the sprite slides right!" }
+    ],
+    "concept": {
+      "title": "Sprites & coordinates",
+      "explanation": "A sprite's position is described with two numbers: x (horizontal) and y (vertical). Increasing x moves it right; increasing y moves it down.",
+      "example": "hero.x = 100\nhero.y = 50"
+    },
+    "playground": {
+      "type": "coordinate_mover",
+      "instructions": "Drag the sprite and watch its x and y values change.",
+      "config": { "gridSize": 10 }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "To move a sprite further to the right, you should:",
+      "options": [
+        "Increase its y value",
+        "Decrease its x value",
+        "Increase its x value",
+        "Change its color"
+      ],
+      "correctIndex": 2
+    },
+    "reward": { "xp": 25, "coins": 10 }
+  },
+  {
+    "id": "gf-03",
+    "realmId": "gameForge",
+    "order": 3,
+    "title": "Collision Detection",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Gigabyte", "message": "How does a game know when two things bump into each other? Collision detection!" },
+      { "speaker": "Gigabyte", "message": "The simplest check: are two sprites overlapping in both x and y?" },
+      { "speaker": "Pixel", "message": "That's how coins get collected and obstacles get hit." }
+    ],
+    "concept": {
+      "title": "Collision detection",
+      "explanation": "Two sprites collide when their positions overlap. Games check this every frame to trigger events like collecting a coin.",
+      "example": "if hero.overlaps(coin):\n    collect(coin)"
+    },
+    "playground": {
+      "type": "collision_sandbox",
+      "instructions": "Drag the hero sprite toward the coin and see when the collision message appears.",
+      "config": {}
+    },
+    "challenge": {
+      "type": "fill_blank",
+      "prompt": "Fill in the blank to check if the hero touches a coin.",
+      "template": "if hero.___(coin):",
+      "answer": "overlaps"
+    },
+    "reward": { "xp": 25, "coins": 15 }
+  },
+  {
+    "id": "gf-04",
+    "realmId": "gameForge",
+    "order": 4,
+    "title": "Score and State",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Gigabyte", "message": "Every game needs to remember things — like the score, health, or how many lives are left." },
+      { "speaker": "Gigabyte", "message": "We call this game state. It's just variables that change as you play." },
+      { "speaker": "Pixel", "message": "Collect a coin, score goes up. Simple as that!" }
+    ],
+    "concept": {
+      "title": "Game state",
+      "explanation": "Game state is the set of variables that describe the current situation, like score or lives. Update them when something happens in the game.",
+      "example": "score = 0\nscore = score + 10  # after collecting a coin"
+    },
+    "playground": {
+      "type": "state_tracker",
+      "instructions": "Tap the coin to increase the score variable and watch it update live.",
+      "config": { "startingScore": 0, "coinValue": 10 }
+    },
+    "challenge": {
+      "type": "fill_blank",
+      "prompt": "Fill in the blank to add 10 points after collecting a coin.",
+      "template": "score = score + ___",
+      "answer": "10"
+    },
+    "reward": { "xp": 30, "coins": 15 }
+  },
+  {
+    "id": "gf-05",
+    "realmId": "gameForge",
+    "order": 5,
+    "title": "Boss: Build the Mini Game",
+    "isBoss": true,
+    "story": [
+      { "speaker": "Gigabyte", "message": "You've learned the loop, sprites, collisions, and state. Time to put it all together!" },
+      { "speaker": "Gigabyte", "message": "A real game checks for collisions every frame and updates the score when they happen." },
+      { "speaker": "Pixel", "message": "This is the Boss Challenge — build the core of a real mini game!" }
+    ],
+    "concept": {
+      "title": "Putting it together",
+      "explanation": "A simple game combines a loop, sprite positions, collision checks, and state updates: check for a collision, then update the score if it happened.",
+      "example": "if hero.overlaps(coin):\n    score = score + 10\n    remove(coin)"
+    },
+    "playground": {
+      "type": "code_fill",
+      "instructions": "Complete the mini game: when the hero overlaps the coin, add 10 to the score and remove the coin.",
+      "config": { "starterCode": "if hero.overlaps(coin):\n    score = score + 10\n    remove(coin)" }
+    },
+    "challenge": {
+      "type": "block_code",
+      "prompt": "Snap the blocks together to check for a collision and award points when the hero touches the coin.",
+      "correctBlocks": [
+        "if hero.overlaps(coin):",
+        "    score = score + 10",
+        "    remove(coin)"
+      ],
+      "distractorBlocks": ["if hero.overlaps(coin)", "score = score - 10"]
+    },
+    "reward": { "xp": 60, "coins": 40, "badgeId": "mini_game_builder" }
+  }
+]

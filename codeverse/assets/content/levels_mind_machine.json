@@ -1,0 +1,155 @@
+[
+  {
+    "id": "mm-01",
+    "realmId": "mindMachine",
+    "order": 1,
+    "title": "What Is Machine Learning?",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Axiom", "message": "Welcome, young thinker. Machine learning is teaching computers to learn from examples." },
+      { "speaker": "Axiom", "message": "Instead of writing exact rules, we show the computer many examples and let it find the pattern." },
+      { "speaker": "Pixel", "message": "It's a bit like how you learned to recognize cats after seeing many pictures of them!" }
+    ],
+    "concept": {
+      "title": "Learning from examples",
+      "explanation": "Machine learning lets a computer find patterns by studying many examples, instead of being told exact rules.",
+      "example": "Show 100 photos labeled 'cat' or 'dog' -> the computer learns to tell them apart."
+    },
+    "playground": {
+      "type": "pattern_spotter",
+      "instructions": "Look at the shape examples and guess the rule the computer might learn.",
+      "config": { "examples": ["small circle = happy", "big circle = calm"] }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "Machine learning mainly works by:",
+      "options": [
+        "Following exact rules a programmer writes for every case",
+        "Finding patterns from many examples",
+        "Guessing randomly with no examples",
+        "Memorizing one single example"
+      ],
+      "correctIndex": 1
+    },
+    "reward": { "xp": 20, "coins": 10 }
+  },
+  {
+    "id": "mm-02",
+    "realmId": "mindMachine",
+    "order": 2,
+    "title": "Spotting Patterns",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Axiom", "message": "Pattern recognition is the heart of machine learning." },
+      { "speaker": "Axiom", "message": "Look at these shapes — can you tell what comes next in the sequence?" },
+      { "speaker": "Pixel", "message": "Your brain just did what an ML model tries to do!" }
+    ],
+    "concept": {
+      "title": "Pattern recognition",
+      "explanation": "Pattern recognition means noticing a repeating rule in data, so you can predict what comes next.",
+      "example": "Circle, Square, Circle, Square, ___ -> Circle"
+    },
+    "playground": {
+      "type": "sequence_predictor",
+      "instructions": "Study the shape sequence and pick what should come next.",
+      "config": { "sequence": ["circle", "square", "circle", "square"] }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "Sequence: Red, Blue, Red, Blue, ___. What comes next?",
+      "options": ["Red", "Blue", "Green", "Yellow"],
+      "correctIndex": 0
+    },
+    "reward": { "xp": 25, "coins": 10 }
+  },
+  {
+    "id": "mm-03",
+    "realmId": "mindMachine",
+    "order": 3,
+    "title": "Sorting Into Groups",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Axiom", "message": "Classification means sorting things into the correct group, like 'cat' or 'dog'." },
+      { "speaker": "Axiom", "message": "A well-trained model looks at features — size, shape, color — to decide the group." },
+      { "speaker": "Pixel", "message": "You classify things every day without even noticing!" }
+    ],
+    "concept": {
+      "title": "Classification",
+      "explanation": "Classification is sorting an example into one of several known groups based on its features.",
+      "example": "Furry + barks -> 'Dog'.  Furry + meows -> 'Cat'."
+    },
+    "playground": {
+      "type": "classifier_sandbox",
+      "instructions": "Drag each animal card into the group it belongs to.",
+      "config": { "groups": ["Cat", "Dog"] }
+    },
+    "challenge": {
+      "type": "match_pairs",
+      "prompt": "Match each feature set to the correct animal group.",
+      "pairs": { "Barks and wags tail": "Dog", "Meows and purrs": "Cat" }
+    },
+    "reward": { "xp": 25, "coins": 15 }
+  },
+  {
+    "id": "mm-04",
+    "realmId": "mindMachine",
+    "order": 4,
+    "title": "Training and Testing",
+    "isBoss": false,
+    "story": [
+      { "speaker": "Axiom", "message": "Models learn from training data, but we must test them on examples they've never seen." },
+      { "speaker": "Axiom", "message": "If a model only memorizes the training set, it won't work well on new data." },
+      { "speaker": "Pixel", "message": "It's like studying with practice questions, then taking a different real test!" }
+    ],
+    "concept": {
+      "title": "Training vs. testing",
+      "explanation": "We split examples into a training set (to learn from) and a test set (to check if the model really learned the pattern, not just memorized it).",
+      "example": "80 photos to train the model, 20 new photos to test if it really learned."
+    },
+    "playground": {
+      "type": "train_test_splitter",
+      "instructions": "Drag examples into the training pile or the testing pile and see how the split changes.",
+      "config": { "totalExamples": 10 }
+    },
+    "challenge": {
+      "type": "multiple_choice",
+      "prompt": "Why do we test a model on examples it has never seen?",
+      "options": [
+        "To make training faster",
+        "To check if it truly learned the pattern, not just memorized",
+        "Because training data runs out",
+        "It's not actually necessary"
+      ],
+      "correctIndex": 1
+    },
+    "reward": { "xp": 30, "coins": 15 }
+  },
+  {
+    "id": "mm-05",
+    "realmId": "mindMachine",
+    "order": 5,
+    "title": "Boss: Train Your Own Classifier",
+    "isBoss": true,
+    "story": [
+      { "speaker": "Axiom", "message": "You've learned patterns, classification, and training versus testing. Now build your own!" },
+      { "speaker": "Axiom", "message": "A classifier learns from labeled training examples, then predicts the label for new ones." },
+      { "speaker": "Pixel", "message": "This is the Boss Challenge — train and test a tiny classifier!" }
+    ],
+    "concept": {
+      "title": "Building a classifier",
+      "explanation": "To build a classifier: gather labeled examples, split them into training and test sets, train the model on the training set, then check its accuracy on the test set.",
+      "example": "Label 20 fruits as 'apple' or 'banana' -> train on 16 -> test on the other 4."
+    },
+    "playground": {
+      "type": "classifier_trainer",
+      "instructions": "Label the fruit examples, split them into train/test, then see how well your classifier predicts the test set.",
+      "config": { "fruits": ["apple", "banana", "apple", "banana"] }
+    },
+    "challenge": {
+      "type": "drag_to_order",
+      "prompt": "Put the steps of building a classifier in the correct order.",
+      "correctOrder": ["Gather labeled examples", "Split into training and test sets", "Train the model", "Test its accuracy"]
+    },
+    "reward": { "xp": 60, "coins": 40, "badgeId": "classifier_builder" }
+  }
+]
