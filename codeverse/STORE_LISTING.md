@@ -48,16 +48,22 @@ kids coding, learn python, programming for kids, STEM, edtech, game design,
 data science basics, machine learning basics
 
 ## Privacy policy URL
-A hosting-ready HTML copy lives at `docs/privacy-policy.html` (same content
-as `assets/legal/privacy_policy.md`, just styled for a browser). To publish
-it for free via GitHub Pages:
+A hosting-ready HTML copy lives at `codeverse/docs/privacy-policy.html`
+(same content as `assets/legal/privacy_policy.md`, just styled for a
+browser). This repo is a monorepo, so GitHub's simple "deploy from
+branch" Pages mode can't serve a nested folder — it only serves `/docs`
+or `/` at the repo root. Instead, `.github/workflows/codeverse-pages.yml`
+(at the repo root, not inside `codeverse/`) publishes just this nested
+folder via GitHub Actions:
 
 1. On GitHub, go to this repo's **Settings → Pages**.
-2. Under "Build and deployment", set **Source** to "Deploy from a branch".
-3. Set **Branch** to `master` (or whichever default branch holds this
-   file) and the folder to `/docs`, then Save.
-4. After a minute or two, the page is live at:
-   `https://ashking1981.github.io/my_projects/privacy-policy.html`
+2. Under "Build and deployment", set **Source** to "GitHub Actions" (not
+   "Deploy from a branch").
+3. Push to `master` (or run the workflow manually from the Actions tab —
+   it's also triggered by `workflow_dispatch`). It only runs when files
+   under `codeverse/docs/` change.
+4. After the workflow finishes (check the Actions tab), the page is live
+   at: `https://ashking1981.github.io/my_projects/privacy-policy.html`
 
 Use that URL in Play Console's "Privacy policy" field before submitting.
 
