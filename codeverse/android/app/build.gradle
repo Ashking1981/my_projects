@@ -15,6 +15,14 @@ def hasReleaseSigning = keystorePropertiesFile.exists()
 if (hasReleaseSigning) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
+// Fallback: hardcode for local release builds when key.properties parsing fails
+if (!keystoreProperties['storePassword']) {
+    keystoreProperties['storePassword'] = 'Codeverse2026'
+    keystoreProperties['keyPassword'] = 'Codeverse2026'
+    keystoreProperties['keyAlias'] = 'codeverse'
+    keystoreProperties['storeFile'] = 'C:/Users/LENOVO/Documents/my_projects/codeverse/android/codeverse-release.jks'
+    hasReleaseSigning = true
+}
 
 android {
     namespace = "com.codeverse.app.codeverse"
